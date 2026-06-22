@@ -592,7 +592,10 @@
 </head>
 <body>
     <div class="admin-layout">
-         <!-- Sidebar -->
+        <!-- Sidebar Overlay -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Sidebar -->
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <a href="../pelanggan/index.html" class="sidebar-logo">
@@ -960,23 +963,8 @@
         </main>
     </div>
 
-    <script>
-        // Mobile Toggle
-        const mobileToggle = document.getElementById('mobileToggle');
-        const sidebar = document.getElementById('sidebar');
-
-        mobileToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('active');
-        });
-
-        // Close sidebar when clicking outside on mobile
-        document.addEventListener('click', (e) => {
-            if (window.innerWidth <= 768) {
-                if (!sidebar.contains(e.target) && !mobileToggle.contains(e.target)) {
-                    sidebar.classList.remove('active');
-                }
-            }
-        });
-    </script>
+    <script src="../js/admin/common.js"></script>
+</body>
+</html>
 </body>
 </html>

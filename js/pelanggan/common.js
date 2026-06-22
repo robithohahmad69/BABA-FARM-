@@ -5,33 +5,73 @@
 // Mobile Menu Toggle
 const mobileToggle = document.getElementById('mobileToggle');
 const navLinks = document.getElementById('navLinks');
+const mobileOverlay = document.getElementById('mobileOverlay');
+
+function openMobileMenu() {
+    navLinks?.classList.add('active');
+    mobileOverlay?.classList.add('active');
+    mobileToggle?.classList.add('active');
+    const icon = mobileToggle?.querySelector('i');
+    if (icon) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+    }
+    document.body.style.overflow = 'hidden';
+}
+
+function closeMobileMenu() {
+    navLinks?.classList.remove('active');
+    mobileOverlay?.classList.remove('active');
+    mobileToggle?.classList.remove('active');
+    const icon = mobileToggle?.querySelector('i');
+    if (icon) {
+        icon.classList.add('fa-bars');
+        icon.classList.remove('fa-times');
+    }
+    document.body.style.overflow = '';
+}
 
 if (mobileToggle) {
     mobileToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        const icon = mobileToggle.querySelector('i');
-        if (icon) {
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
+        if (navLinks?.classList.contains('active')) {
+            closeMobileMenu();
+        } else {
+            openMobileMenu();
         }
     });
+}
+
+// Close mobile menu when clicking overlay
+if (mobileOverlay) {
+    mobileOverlay.addEventListener('click', closeMobileMenu);
 }
 
 // Close mobile menu when clicking on a link
 if (navLinks) {
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            if (mobileToggle) {
-                const icon = mobileToggle.querySelector('i');
-                if (icon) {
-                    icon.classList.add('fa-bars');
-                    icon.classList.remove('fa-times');
-                }
-            }
+            closeMobileMenu();
         });
     });
 }
+
+// Close mobile menu on window resize
+let resizeTimer;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+        if (window.innerWidth > 768) {
+            closeMobileMenu();
+        }
+    }, 250);
+});
+
+// Close mobile menu with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks?.classList.contains('active')) {
+        closeMobileMenu();
+    }
+});
 
 // Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -39,7 +79,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     });
 });
@@ -95,3 +135,8 @@ window.addToCart = function(btn, callback) {
 
     if (callback) callback();
 };
+
+// Add touch-friendly hover effects
+if ('ontouchstart' in window) {
+    document.body.classList.add('touch-device');
+}
