@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permintaan Lele Custom - BABA FARM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/pelanggan/common.css">
+    <style>
+        /* ========================================
+           PERMINTAAN CUSTOM PAGE STYLES
+           ======================================== */
+
+        /* Page Header */
+        .page-header {
+            padding: 8rem 5% 3rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 0 5% 4rem;
+        }
+
+        .main-content .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 3rem;
+        }
+
+        /* Form Section */
+        .form-section {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .form-card {
+            padding: 2rem;
+        }
+
+        .form-card h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-card h2 i {
+            color: #52B788;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .form-group label span {
+            color: #e74c3c;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 0.8rem 1rem;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #52B788;
+            box-shadow: 0 0 0 3px rgba(82, 183, 136, 0.1);
+        }
+
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .form-group select option {
+            background: #1B4332;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-helper {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 0.3rem;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .quantity-btn:hover {
+            background: rgba(82, 183, 136, 0.2);
+            border-color: #52B788;
+        }
+
+        .quantity-input {
+            flex: 1;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            padding: 0.8rem;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .quantity-input:focus {
+            outline: none;
+            border-color: #52B788;
+        }
+
+        .unit-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-left: 0.5rem;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(82, 183, 136, 0.8);
+            border: none;
+            border-radius: 10px;
+            color: #1B4332;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .btn-submit:hover {
+            background: rgba(82, 183, 136, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(82, 183, 136, 0.3);
+        }
+
+        .btn-submit:disabled {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* History Section */
+        .history-section {
+            height: fit-content;
+        }
+
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .history-header h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .filter-tab {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-tab:hover,
+        .filter-tab.active {
+            background: rgba(82, 183, 136, 0.2);
+            border-color: #52B788;
+            color: #52B788;
+        }
+
+        /* Request Cards */
+        .request-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .request-card {
+            padding: 1.5rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .request-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(82, 183, 136, 0.3);
+        }
+
+        .request-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .request-id {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #52B788;
+        }
+
+        .request-date {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .request-body {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .request-info {
+            font-size: 0.85rem;
+        }
+
+        .request-info .label {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.75rem;
+        }
+
+        .request-info .value {
+            font-weight: 500;
+        }
+
+        .request-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .request-price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #52B788;
+        }
+
+        .request-price.pending {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        .btn-view {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-view:hover {
+            background: rgba(82, 183, 136, 0.2);
+            border-color: #52B788;
+        }
+
+        /* Status Badges */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .status-waiting {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+        }
+
+        .status-approved {
+            background: rgba(52, 152, 219, 0.2);
+            color: #3498db;
+        }
+
+        .status-processing {
+            background: rgba(155, 89, 182, 0.2);
+            color: #9b59b6;
+        }
+
+        .status-ready {
+            background: rgba(46, 204, 113, 0.2);
+            color: #2ecc71;
+        }
+
+        .status-cancelled {
+            background: rgba(231, 76, 60, 0.2);
+            color: #e74c3c;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.2);
+            margin-bottom: 1rem;
+        }
+
+        .empty-state h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-state p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Info Box */
+        .info-box {
+            padding: 1rem 1.5rem;
+            background: rgba(82, 183, 136, 0.1);
+            border: 1px solid rgba(82, 183, 136, 0.3);
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-box p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        .info-box p strong {
+            color: #52B788;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .main-content .container {
+                grid-template-columns: 1fr;
+            }
+
+            .form-section {
+                position: static;
+            }
+
+            .request-body {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 7rem 4% 2rem;
+            }
+
+            .main-content {
+                padding: 0 4% 3rem;
+            }
+
+            .history-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+
+            .filter-tabs {
+                width: 100%;
+                overflow-x: auto;
+            }
+
+            .request-card {
+                padding: 1rem;
+            }
+
+            .request-footer {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+
+            .btn-view {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Form Error */
+        .form-error {
+            color: #e74c3c;
+            font-size: 0.75rem;
+            margin-top: 0.3rem;
+            display: none;
+        }
+
+        .form-error.show {
+            display: block;
+        }
+
+        .form-group.error input,
+        .form-group.error select,
+        .form-group.error textarea {
+            border-color: #e74c3c;
+        }
+
+        /* Loading State */
+        .btn-submit.loading {
+            position: relative;
+            color: transparent;
+        }
+
+        .btn-submit.loading::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid rgba(27, 67, 50, 0.3);
+            border-top-color: #1B4332;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* Success Animation */
+        .btn-submit.success {
+            background: rgba(46, 204, 113, 0.8);
+            color: #fff;
+        }
+
+        .btn-submit.success i {
+            animation: checkmark 0.5s ease-in-out;
+        }
+
+        @keyframes checkmark {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        /* Footer */
+        .page-footer {
+            padding: 2rem 5%;
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .page-footer p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-fish"></i> BABA FARM
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="katalog.html">Produk</a></li>
+                <li><a href="artikel.html">Artikel</a></li>
+                <li><a href="history.html">Transaksi</a></li>
+                <li><a href="permintaan-custom.html" class="active">Custom</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="keranjang.html" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">3</span>
+                </a>
+                <a href="../admin/dashboard.html" class="btn btn-outline">
+                    <i class="fas fa-user"></i>
+                </a>
+                <div class="mobile-toggle" id="mobileToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1><i class="fas fa-clipboard-list" style="color: #52B788;"></i> Permintaan Lele Custom</h1>
+            <p>Pesan benih lele sesuai kebutuhan spesifik Anda</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Form Section -->
+            <div class="form-section">
+                <div class="form-card glass">
+                    <h2><i class="fas fa-plus-circle"></i> Buat Permintaan Baru</h2>
+
+                    <!-- Info Box -->
+                    <div class="info-box">
+                        <p><strong>Info:</strong> Minimum pemesanan 1.000 ekor. Tim kami akan menghubungi Anda dengan penawaran harga dalam 1x24 jam.</p>
+                    </div>
+
+                    <form id="permintaanForm">
+                        <!-- Jenis Lele -->
+                        <div class="form-group">
+                            <label for="jenisLele">Jenis Lele <span>*</span></label>
+                            <select id="jenisLele" required>
+                                <option value="">Pilih jenis lele...</option>
+                                <option value="Benih Lele Sangkuriang">Benih Lele Sangkuriang</option>
+                                <option value="Benih Lele Phyton">Benih Lele Phyton (Super Growth)</option>
+                                <option value="Benih Lele Mesir">Benih Lele Mesir</option>
+                                <option value="Lele Konsumsi">Lele Konsumsi (Ukuran Grown)</option>
+                                <option value="Indukan Lele">Indukan Lele (Breeder)</option>
+                            </select>
+                        </div>
+
+                        <!-- Ukuran -->
+                        <div class="form-group">
+                            <label for="ukuran">Ukuran <span>*</span></label>
+                            <select id="ukuran" required>
+                                <option value="">Pilih ukuran...</option>
+                                <option value="3-5 cm">3-5 cm (Benih Kecil)</option>
+                                <option value="5-7 cm">5-7 cm (Benih Standar)</option>
+                                <option value="7-10 cm">7-10 cm (Benih Besar)</option>
+                                <option value="10-15 cm">10-15 cm (Pembesaran)</option>
+                                <option value="Custom">Custom (sebutkan di catatan)</option>
+                            </select>
+                        </div>
+
+                        <!-- Jumlah -->
+                        <div class="form-group">
+                            <label for="jumlah">Jumlah (ekor) <span>*</span></label>
+                            <div class="quantity-control">
+                                <button type="button" class="quantity-btn" onclick="updateJumlah(-1000)">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <input type="number" id="jumlah" class="quantity-input" value="1000" min="1000" step="100" required>
+                                <button type="button" class="quantity-btn" onclick="updateJumlah(1000)">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                                <span class="unit-label">ekor</span>
+                            </div>
+                            <p class="form-helper">Min: 1.000 ekor</p>
+                        </div>
+
+                        <!-- Estimasi Tanggal Panen -->
+                        <div class="form-group">
+                            <label for="estimasiPanen">Estimasi Tanggal Panen <span>*</span></label>
+                            <input type="date" id="estimasiPanen" required>
+                            <p class="form-helper">Pilih tanggal minimal 30 hari dari hari ini</p>
+                        </div>
+
+                        <!-- Catatan -->
+                        <div class="form-group">
+                            <label for="catatan">Catatan Khusus (opsional)</label>
+                            <textarea id="catatan" placeholder="Contoh: Packing khusus untuk jarak jauh, sertakan probiotik, dll"></textarea>
+                        </div>
+
+                        <!-- Submit -->
+                        <button type="submit" class="btn-submit" id="submitBtn">
+                            <i class="fas fa-paper-plane"></i> Kirim Permintaan
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- History Section -->
+            <div class="history-section">
+                <div class="history-header">
+                    <h2>Riwayat Permintaan</h2>
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" data-filter="all">Semua</button>
+                        <button class="filter-tab" data-filter="Menunggu Konfirmasi">Menunggu</button>
+                        <button class="filter-tab" data-filter="Disetujui">Disetujui</button>
+                        <button class="filter-tab" data-filter="Diproses">Diproses</button>
+                        <button class="filter-tab" data-filter="Siap">Siap</button>
+                    </div>
+                </div>
+
+                <!-- Request List -->
+                <div class="request-list" id="requestList">
+                    <!-- Request cards akan di-render oleh JavaScript -->
+                </div>
+
+                <!-- Empty State (hidden by default) -->
+                <div class="empty-state" id="emptyState" style="display: none;">
+                    <i class="fas fa-clipboard-list"></i>
+                    <h3>Belum Ada Permintaan</h3>
+                    <p>Anda belum pernah membuat permintaan lele custom</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+        <div class="container">
+            <p>&copy; 2026 BABA FARM. Semua hak dilindungi.</p>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- Common Scripts -->
+    <script src="../js/pelanggan/common.js"></script>
+    <script src="../js/pelanggan/permintaan.js"></script>
+</body>
+</html>
