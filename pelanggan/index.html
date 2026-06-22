@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BABA FARM SURABAYA - Budidaya Ikan Lele Berkualitas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/pelanggan/common.css">
+    <link rel="stylesheet" href="../css/pelanggan/index.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-fish"></i>
+                BABA FARM
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="active">Beranda</a></li>
+                <li><a href="katalog.html">Produk</a></li>
+                <li><a href="artikel.html">Artikel</a></li>
+                <li><a href="history.html">Transaksi</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="keranjang.html" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">3</span>
+                </a>
+                <a href="../admin/dashboard.html" class="btn btn-outline">
+                    <i class="fas fa-user"></i>
+                </a>
+                <div class="mobile-toggle" id="mobileToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Budidaya Ikan Lele <span>Berkualitas</span> Premium</h1>
+                <p>Dapatkan benih lele berkualitas unggul, pakan terbaik, dan panduan lengkap budidaya dari para ahli. Mulai bisnis budidaya Anda bersama kami.</p>
+                <div class="hero-buttons">
+                    <a href="katalog.html" class="btn btn-primary">
+                        <i class="fas fa-shopping-bag"></i>
+                        Lihat Produk
+                    </a>
+                    <a href="artikel.html" class="btn btn-outline">
+                        <i class="fas fa-book"></i>
+                        Pelajari Lebih
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Mengapa Memilih Kami?</h2>
+                <p>Kualitas dan kepuasan pelanggan adalah prioritas utama kami</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card glass">
+                    <div class="feature-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3>Kualitas Terjamin</h3>
+                    <p>Benih lele dengan sertifikasi dan kualitas terbaik di kelasnya</p>
+                </div>
+                <div class="feature-card glass">
+                    <div class="feature-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>Pengiriman Cepat</h3>
+                    <p>Pengiriman aman ke seluruh Indonesia dengan garansi hidup</p>
+                </div>
+                <div class="feature-card glass">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Konsultasi Gratis</h3>
+                    <p>Dukungan teknis dan konsultasi budidaya dari para ahli</p>
+                </div>
+                <div class="feature-card glass">
+                    <div class="feature-icon">
+                        <i class="fas fa-hand-holding-dollar"></i>
+                    </div>
+                    <h3>Harga Terjangkau</h3>
+                    <p>Harga kompetitif dengan kualitas produk premium</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products">
+        <div class="container">
+            <div class="section-header">
+                <h2>Produk Terbaru</h2>
+                <p>Dapatkan produk terbaik untuk budidaya ikan lele Anda</p>
+            </div>
+            <div class="products-grid">
+
+                <!-- Produk 1 -->
+                <div class="product-card glass">
+                    <div class="product-image">
+                        <span class="product-badge">Baru</span>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Benih</span>
+                        <h3>Benih Lele Sangkuriang</h3>
+                        <p class="product-price">Rp 150.000 / 1.000 ekor</p>
+                        <div class="product-actions">
+                            <a href="detail-produk.html" class="btn btn-outline"
+                               onclick="simpanProdukDipilih(this.closest('.product-card').querySelector('h3').textContent)">
+                                Detail
+                            </a>
+                            <button class="btn btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Keranjang
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produk 2 -->
+                <div class="product-card glass">
+                    <div class="product-image">
+                        <span class="product-badge">Best Seller</span>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Pakan</span>
+                        <h3>Pakan Pelet 781-2</h3>
+                        <p class="product-price">Rp 85.000 / karung</p>
+                        <div class="product-actions">
+                            <a href="detail-produk.html" class="btn btn-outline"
+                               onclick="simpanProdukDipilih(this.closest('.product-card').querySelector('h3').textContent)">
+                                Detail
+                            </a>
+                            <button class="btn btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Keranjang
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produk 3 -->
+                <div class="product-card glass">
+                    <div class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Suplemen</span>
+                        <h3>Vitamin Ikan Grow</h3>
+                        <p class="product-price">Rp 45.000 / botol</p>
+                        <div class="product-actions">
+                            <a href="detail-produk.html" class="btn btn-outline"
+                               onclick="simpanProdukDipilih(this.closest('.product-card').querySelector('h3').textContent)">
+                                Detail
+                            </a>
+                            <button class="btn btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Keranjang
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produk 4 -->
+                <div class="product-card glass">
+                    <div class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Obat</span>
+                        <h3>Obat Organik Amankan</h3>
+                        <p class="product-price">Rp 35.000 / botol</p>
+                        <div class="product-actions">
+                            <a href="detail-produk.html" class="btn btn-outline"
+                               onclick="simpanProdukDipilih(this.closest('.product-card').querySelector('h3').textContent)">
+                                Detail
+                            </a>
+                            <button class="btn btn-primary add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Keranjang
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="katalog.html" class="btn btn-primary">
+                    Lihat Semua Produk <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Articles Section -->
+    <section class="articles">
+        <div class="container">
+            <div class="section-header">
+                <h2>Artikel Terbaru</h2>
+                <p>Tips dan trik budidaya ikan lele dari para ahli</p>
+            </div>
+            <div class="articles-grid">
+
+                <!-- Artikel 1 -->
+                <div class="article-card glass">
+                    <div class="article-image">
+                    </div>
+                    <div class="article-info">
+                        <div class="article-meta">
+                            <span><i class="fas fa-calendar"></i> 15 Jan 2026</span>
+                            <span><i class="fas fa-folder"></i> Tips</span>
+                        </div>
+                        <h3>Cara Mengatur Kualitas Air Kolam Lele yang Optimal</h3>
+                        <p class="article-excerpt">Kualitas air adalah faktor terpenting dalam budidaya ikan lele. Pelajari cara mengatur pH, suhu, dan oksigen terlarut...</p>
+                        <a href="detail-artikel.html" class="article-link"
+                           onclick="localStorage.setItem('selectedArticle', this.closest('.article-card').querySelector('h3').textContent)">
+                            Baca Selengkapnya <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Artikel 2 -->
+                <div class="article-card glass">
+                    <div class="article-image">
+                    </div>
+                    <div class="article-info">
+                        <div class="article-meta">
+                            <span><i class="fas fa-calendar"></i> 12 Jan 2026</span>
+                            <span><i class="fas fa-folder"></i> Pakan</span>
+                        </div>
+                        <h3>Jadwal Pemberian Pakan Lele yang Tepat</h3>
+                        <p class="article-excerpt">Pemberian pakan yang tepat sangat mempengaruhi pertumbuhan ikan lele. Simak jadwal dan takaran pakan yang ideal...</p>
+                        <a href="detail-artikel.html" class="article-link"
+                           onclick="localStorage.setItem('selectedArticle', this.closest('.article-card').querySelector('h3').textContent)">
+                            Baca Selengkapnya <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Artikel 3 -->
+                <div class="article-card glass">
+                    <div class="article-image">
+                    </div>
+                    <div class="article-info">
+                        <div class="article-meta">
+                            <span><i class="fas fa-calendar"></i> 10 Jan 2026</span>
+                            <span><i class="fas fa-folder"></i> Bisnis</span>
+                        </div>
+                        <h3>Analisis Usaha Budidaya Lele 2026</h3>
+                        <p class="article-excerpt">Pelajari analisis keuntungan dan modal yang dibutuhkan untuk memulai bisnis budidaya ikan lele skala rumahan...</p>
+                        <a href="detail-artikel.html" class="article-link"
+                           onclick="localStorage.setItem('selectedArticle', this.closest('.article-card').querySelector('h3').textContent)">
+                            Baca Selengkapnya <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="artikel.html" class="btn btn-outline">
+                    Lihat Semua Artikel <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-box glass">
+                <h2>Siap Memulai Budidaya Lele?</h2>
+                <p>Dapatkan konsultasi gratis dan penawaran khusus untuk pembelian pertama Anda</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="katalog.html" class="btn btn-primary">
+                        <i class="fas fa-shopping-cart"></i>
+                        Belanja Sekarang
+                    </a>
+                    <a href="artikel.html" class="btn btn-outline">
+                        <i class="fas fa-book-open"></i>
+                        Baca Panduan
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-brand">
+                <h3><i class="fas fa-fish"></i> BABA FARM</h3>
+                <p>Penyedia benih, pakan, dan perlengkapan budidaya ikan lele berkualitas terbaik di Indonesia.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Navigasi</h4>
+                <ul>
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="katalog.html">Katalog Produk</a></li>
+                    <li><a href="artikel.html">Artikel</a></li>
+                    <li><a href="history.html">Transaksi</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Bantuan</h4>
+                <ul>
+                    <li><a href="#">Cara Pemesanan</a></li>
+                    <li><a href="#">Pengiriman</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Kontak</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Hubungi Kami</h4>
+                <ul>
+                    <li><i class="fas fa-phone"></i> +62 812-3456-7890</li>
+                    <li><i class="fas fa-envelope"></i> info@babafarm.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Jln Jemur Wonosari, Surabaya</li>
+                </ul>
+            </div>
+            <div class="footer-bottom" style="grid-column: 1 / -1;">
+                <p>&copy; 2026 BABA FARM. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/pelanggan/common.js"></script>
+    <script src="../js/pelanggan/index.js"></script>
+    <script src="../js/produk-data.js"></script>
+    <script src="../js/image-config.js"></script>
+</body>
+</html>

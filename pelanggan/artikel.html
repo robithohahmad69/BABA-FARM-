@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arsip Artikel - BABA FARM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/pelanggan/common.css">
+    <link rel="stylesheet" href="../css/pelanggan/artikel.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-fish"></i>
+                BABA FARM
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="katalog.html">Produk</a></li>
+                <li><a href="artikel.html" class="active">Artikel</a></li>
+                <li><a href="history.html">Transaksi</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="keranjang.html" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">3</span>
+                </a>
+                <a href="../admin/dashboard.html" class="btn btn-outline">
+    <i class="fas fa-user"></i>
+</a>
+                </a>
+                <div class="mobile-toggle" id="mobileToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>Arsip Artikel</h1>
+        <p>Kumpulan artikel dan tips seputar budidaya ikan lele</p>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-content">
+                    <div class="sidebar-section glass">
+                        <h4 class="sidebar-title">Cari Artikel</h4>
+                        <div class="search-box">
+                            <input type="text" id="searchInput" placeholder="Kata kunci...">
+                            <button id="searchBtn"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section glass">
+                        <h4 class="sidebar-title">Kategori</h4>
+                        <ul class="category-list">
+                            <li><a href="#" class="category-link active" data-category="all">
+                                <span><i class="fas fa-th-large"></i> Semua</span>
+                                <span class="category-count">12</span>
+                            </a></li>
+                            <li><a href="#" class="category-link" data-category="tips">
+                                <span><i class="fas fa-lightbulb"></i> Tips</span>
+                                <span class="category-count">4</span>
+                            </a></li>
+                            <li><a href="#" class="category-link" data-category="pakan">
+                                <span><i class="fas fa-utensils"></i> Pakan</span>
+                                <span class="category-count">3</span>
+                            </a></li>
+                            <li><a href="#" class="category-link" data-category="penyakit">
+                                <span><i class="fas fa-medkit"></i> Penyakit</span>
+                                <span class="category-count">2</span>
+                            </a></li>
+                            <li><a href="#" class="category-link" data-category="bisnis">
+                                <span><i class="fas fa-chart-line"></i> Bisnis</span>
+                                <span class="category-count">3</span>
+                            </a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="sidebar-section glass">
+                    <h4 class="sidebar-title">Artikel Populer</h4>
+                    <ul class="category-list">
+                        <li>
+                            <a href="detail-artikel.html" onclick="localStorage.setItem('selectedArticle', 'Cara Mengatur Kualitas Air Kolam Lele yang Optimal')" style="display: block; padding: 0.8rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                <span style="display: block; font-size: 0.9rem; margin-bottom: 0.3rem;">Cara Mengatur Kualitas Air</span>
+                                <span style="font-size: 0.75rem; color: rgba(255,255,255,0.5);"><i class="fas fa-eye"></i> 1.2k views</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="detail-artikel.html" onclick="localStorage.setItem('selectedArticle', 'Jadwal Pemberian Pakan Lele yang Tepat')" style="display: block; padding: 0.8rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                <span style="display: block; font-size: 0.9rem; margin-bottom: 0.3rem;">Jadwal Pemberian Pakan</span>
+                                <span style="font-size: 0.75rem; color: rgba(255,255,255,0.5);"><i class="fas fa-eye"></i> 987 views</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="detail-artikel.html" onclick="localStorage.setItem('selectedArticle', 'Analisis Usaha Budidaya Lele 2026')" style="display: block; padding: 0.8rem 0;">
+                                <span style="display: block; font-size: 0.9rem; margin-bottom: 0.3rem;">Analisis Usaha 2026</span>
+                                <span style="font-size: 0.75rem; color: rgba(255,255,255,0.5);"><i class="fas fa-eye"></i> 856 views</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Articles Section -->
+            <section class="articles-section">
+                <div class="articles-header">
+                    <h2>Semua Artikel</h2>
+                    <span class="articles-count">Menampilkan 12 artikel</span>
+                </div>
+
+                <div class="articles-grid" id="articlesGrid">
+                    <!-- Article 1 -->
+                    <article class="article-card glass" data-category="tips">
+                        <!-- GAMBAR: Article thumbnail - Kualitas Air Kolam -->
+                        <div class="article-image">
+                            <i class="fas fa-water"></i>
+                            <span class="article-category-tag">Tips</span>
+                        </div>
+                        <div class="article-info">
+                            <div class="article-meta">
+                                <span><i class="fas fa-calendar"></i> 15 Jan 2026</span>
+                                <span><i class="fas fa-clock"></i> 5 menit</span>
+                            </div>
+                            <h3>Cara Mengatur Kualitas Air Kolam Lele yang Optimal</h3>
+                            <p class="article-excerpt">Kualitas air adalah faktor terpenting dalam budidaya ikan lele. Pelajari cara mengatur pH, suhu, dan oksigen terlarut...</p>
+                            <div class="article-footer">
+                                <div class="article-author">
+                                    <div class="article-avatar">A</div>
+                                    <span>Ahli Lele</span>
+                                </div>
+                                <a href="detail-artikel.html" class="article-link"
+                                   onclick="localStorage.setItem('selectedArticle', 'Cara Mengatur Kualitas Air Kolam Lele yang Optimal')">
+                                    Baca <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 2 -->
+                    <article class="article-card glass" data-category="pakan">
+                        <!-- GAMBAR: Article thumbnail - Jadwal Pakan -->
+                        <div class="article-image">
+                            <i class="fas fa-utensils"></i>
+                            <span class="article-category-tag">Pakan</span>
+                        </div>
+                        <div class="article-info">
+                            <div class="article-meta">
+                                <span><i class="fas fa-calendar"></i> 12 Jan 2026</span>
+                                <span><i class="fas fa-clock"></i> 4 menit</span>
+                            </div>
+                            <h3>Jadwal Pemberian Pakan Lele yang Tepat</h3>
+                            <p class="article-excerpt">Pemberian pakan yang tepat sangat mempengaruhi pertumbuhan ikan lele. Simak jadwal dan takaran pakan yang ideal...</p>
+                            <div class="article-footer">
+                                <div class="article-author">
+                                    <div class="article-avatar">B</div>
+                                    <span>Budi Santoso</span>
+                                </div>
+                                <a href="detail-artikel.html" class="article-link"
+                                   onclick="localStorage.setItem('selectedArticle', 'Jadwal Pemberian Pakan Lele yang Tepat')">
+                                    Baca <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 3 -->
+                    <article class="article-card glass" data-category="bisnis">
+                        <!-- GAMBAR: Article thumbnail - Analisis Usaha -->
+                        <div class="article-image">
+                            <i class="fas fa-chart-line"></i>
+                            <span class="article-category-tag">Bisnis</span>
+                        </div>
+                        <div class="article-info">
+                            <div class="article-meta">
+                                <span><i class="fas fa-calendar"></i> 10 Jan 2026</span>
+                                <span><i class="fas fa-clock"></i> 8 menit</span>
+                            </div>
+                            <h3>Analisis Usaha Budidaya Lele 2026</h3>
+                            <p class="article-excerpt">Pelajari analisis keuntungan dan modal yang dibutuhkan untuk memulai bisnis budidaya ikan lele skala rumahan...</p>
+                            <div class="article-footer">
+                                <div class="article-author">
+                                    <div class="article-avatar">C</div>
+                                    <span>Consulting Team</span>
+                                </div>
+                                <a href="detail-artikel.html" class="article-link"
+                                   onclick="localStorage.setItem('selectedArticle', 'Analisis Usaha Budidaya Lele 2026')">
+                                    Baca <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 4 -->
+                    <article class="article-card glass" data-category="penyakit">
+                        <!-- GAMBAR: Article thumbnail - Bintik Putih -->
+                        <div class="article-image">
+                            <i class="fas fa-medkit"></i>
+                            <span class="article-category-tag">Penyakit</span>
+                        </div>
+                        <div class="article-info">
+                            <div class="article-meta">
+                                <span><i class="fas fa-calendar"></i> 8 Jan 2026</span>
+                                <span><i class="fas fa-clock"></i> 6 menit</span>
+                            </div>
+                            <h3>Mengatasi Penyakit Bintik Putih pada Lele</h3>
+                            <p class="article-excerpt">Penyakit bintik putih atau white spot sering menyerang ikan lele. Ketahui penyebab dan cara pengobatannya...</p>
+                            <div class="article-footer">
+                                <div class="article-author">
+                                    <div class="article-avatar">D</div>
+                                    <span>Dr. Dedi</span>
+                                </div>
+                                <a href="detail-artikel.html" class="article-link"
+                                   onclick="localStorage.setItem('selectedArticle', 'Mengatasi Penyakit Bintik Putih pada Lele')">
+                                    Baca <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 5 -->
+                    <article class="article-card glass" data-category="tips">
+                        <!-- GAMBAR: Article thumbnail - Kolam Terpal -->
+                        <div class="article-image">
+                            <i class="fas fa-home"></i>
+                            <span class="article-category-tag">Tips</span>
+                        </div>
+                        <div class="article-info">
+                            <div class="article-meta">
+                                <span><i class="fas fa-calendar"></i> 5 Jan 2026</span>
+                                <span><i class="fas fa-clock"></i> 5 menit</span>
+                            </div>
+                            <h3>Cara Membuat Kolam Lele Terpal yang Efisien</h3>
+                            <p class="article-excerpt">Kolam terpal adalah solusi hemat untuk budidaya lele. Simak panduan lengkap pembuatannya...</p>
+                            <div class="article-footer">
+                                <div class="article-author">
+                                    <div class="article-avatar">E</div>
+                                    <span>Engkos</span>
+                                </div>
+                                <a href="detail-artikel.html" class="article-link"
+                                   onclick="localStorage.setItem('selectedArticle', 'Cara Membuat Kolam Lele Terpal yang Efisien')">
+                                    Baca <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 6 -->
+                    <article class="article-card glass" data-category="pakan">
+                        <!-- GAMBAR: Article thumbnail - Budidaya Maggot -->
+                        <div class="article-image">
+                            <i class="fas fa-bug"></i>
+                            <span class="article-category-tag">Pakan</span>
+                        </div>
+                        <div class="article-info">
+                            <div class="article-meta">
+                                <span><i class="fas fa-calendar"></i> 3 Jan 2026</span>
+                                <span><i class="fas fa-clock"></i> 4 menit</span>
+                            </div>
+                            <h3>Budidaya Maggot untuk Pakan Alternatif</h3>
+                            <p class="article-excerpt">Maggot BSF adalah pakan alternatif berkualitas tinggi untuk ikan lele. Pelajari cara budidayanya...</p>
+                            <div class="article-footer">
+                                <div class="article-author">
+                                    <div class="article-avatar">F</div>
+                                    <span>Fajar</span>
+                                </div>
+                                <a href="detail-artikel.html" class="article-link"
+                                   onclick="localStorage.setItem('selectedArticle', 'Budidaya Maggot untuk Pakan Alternatif')">
+                                    Baca <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 7 -->
+                    <article class="article-card glass" data-category="bisnis">
+                        <!-- GAMBAR: Article thumbnail - Pemasaran -->
+                        <div class="article-image">
+                            <i class="fas fa-handshake"></i>
+                            <span class="article-category-tag">Bisnis</span>
+                        </div>
+                        <div class="article-info">
+                            <div class="article-meta">
+                                <span><i class="fas fa-calendar"></i> 1 Jan 2026</span>
+                                <span><i class="fas fa-clock"></i> 7 menit</span>
+                            </div>
+                            <h3>Strategi Pemasaran Ikan Lele dan Olahannya</h3>
+                            <p class="article-excerpt">Sukses budidaya juga perlu strategi pemasaran yang tepat. Temukan berbagai cara memasarkan hasil panen...</p>
+                            <div class="article-footer">
+                                <div class="article-author">
+                                    <div class="article-avatar">G</div>
+                                    <span>Marketing Pro</span>
+                                </div>
+                                <a href="detail-artikel.html" class="article-link"
+                                   onclick="localStorage.setItem('selectedArticle', 'Strategi Pemasaran Ikan Lele dan Olahannya')">
+                                    Baca <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 8 -->
+                    <article class="article-card glass" data-category="tips">
+                        <!-- GAMBAR: Article thumbnail - Musim Hujan -->
+                        <div class="article-image">
+                            <i class="fas fa-temperature-high"></i>
+                            <span class="article-category-tag">Tips</span>
+                        </div>
+                        <div class="article-info">
+                            <div class="article-meta">
+                                <span><i class="fas fa-calendar"></i> 28 Des 2025</span>
+                                <span><i class="fas fa-clock"></i> 4 menit</span>
+                            </div>
+                            <h3>Tips Budidaya Lele Saat Musim Hujan</h3>
+                            <p class="article-excerpt">Musim hujan menimbulkan tantangan tersendiri. Ketahui cara mengatasi masalah yang sering terjadi...</p>
+                            <div class="article-footer">
+                                <div class="article-author">
+                                    <div class="article-avatar">H</div>
+                                    <span>Hendra</span>
+                                </div>
+                                <a href="detail-artikel.html" class="article-link"
+                                   onclick="localStorage.setItem('selectedArticle', 'Tips Budidaya Lele Saat Musim Hujan')">
+                                    Baca <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 9 -->
+                    <article class="article-card glass" data-category="penyakit">
+                        <!-- GAMBAR: Article thumbnail - Stress Ikan -->
+                        <div class="article-image">
+                            <i class="fas fa-virus"></i>
+                            <span class="article-category-tag">Penyakit</span>
+                        </div>
+                        <div class="article-info">
+                            <div class="article-meta">
+                                <span><i class="fas fa-calendar"></i> 25 Des 2025</span>
+                                <span><i class="fas fa-clock"></i> 5 menit</span>
+                            </div>
+                            <h3>Mencegah dan Mengatasi Stress pada Ikan Lele</h3>
+                            <p class="article-excerpt">Stress adalah penyebab utama kematian ikan lele. Pelajari tanda-tanda dan cara pencegahannya...</p>
+                            <div class="article-footer">
+                                <div class="article-author">
+                                    <div class="article-avatar">I</div>
+                                    <span>Dr. Indah</span>
+                                </div>
+                                <a href="detail-artikel.html" class="article-link"
+                                   onclick="localStorage.setItem('selectedArticle', 'Mencegah dan Mengatasi Stress pada Ikan Lele')">
+                                    Baca <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 10 -->
+                    <article class="article-card glass" data-category="bisnis">
+                        <!-- GAMBAR: Article thumbnail - Profit Per Siklus -->
+                        <div class="article-image">
+                            <i class="fas fa-calculator"></i>
+                            <span class="article-category-tag">Bisnis</span>
+                        </div>
+                        <div class="article-info">
+                            <div class="article-meta">
+                                <span><i class="fas fa-calendar"></i> 22 Des 2025</span>
+                                <span><i class="fas fa-clock"></i> 6 menit</span>
+                            </div>
+                            <h3>Perhitungan Profit Per Siklus Panen Lele</h3>
+                            <p class="article-excerpt">Hitung dengan teliti keuntungan yang bisa Anda dapatkan per siklus budidaya lele...</p>
+                            <div class="article-footer">
+                                <div class="article-author">
+                                    <div class="article-avatar">J</div>
+                                    <span>Joko Analyst</span>
+                                </div>
+                                <a href="detail-artikel.html" class="article-link"
+                                   onclick="localStorage.setItem('selectedArticle', 'Perhitungan Profit Per Siklus Panen Lele')">
+                                    Baca <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 11 -->
+                    <article class="article-card glass" data-category="pakan">
+                        <!-- GAMBAR: Article thumbnail - Hemat Pakan -->
+                        <div class="article-image">
+                            <i class="fas fa-balance-scale"></i>
+                            <span class="article-category-tag">Pakan</span>
+                        </div>
+                        <div class="article-info">
+                            <div class="article-meta">
+                                <span><i class="fas fa-calendar"></i> 20 Des 2025</span>
+                                <span><i class="fas fa-clock"></i> 5 menit</span>
+                            </div>
+                            <h3>Tips Menghemat Pakan Tanpa Mengurangi Pertumbuhan</h3>
+                            <p class="article-excerpt">Pakan adalah biaya terbesar dalam budidaya. Pelajari cara menghemat dengan teknik yang tepat...</p>
+                            <div class="article-footer">
+                                <div class="article-author">
+                                    <div class="article-avatar">K</div>
+                                    <span>Kiki</span>
+                                </div>
+                                <a href="detail-artikel.html" class="article-link"
+                                   onclick="localStorage.setItem('selectedArticle', 'Tips Menghemat Pakan Tanpa Mengurangi Pertumbuhan')">
+                                    Baca <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 12 -->
+                    <article class="article-card glass" data-category="tips">
+                        <!-- GAMBAR: Article thumbnail - Pemijahan -->
+                        <div class="article-image">
+                            <i class="fas fa-egg"></i>
+                            <span class="article-category-tag">Tips</span>
+                        </div>
+                        <div class="article-info">
+                            <div class="article-meta">
+                                <span><i class="fas fa-calendar"></i> 18 Des 2025</span>
+                                <span><i class="fas fa-clock"></i> 7 menit</span>
+                            </div>
+                            <h3>Panduan Pemijahan dan Pendederan Ikan Lele</h3>
+                            <p class="article-excerpt">Pelajari teknik pemijahan alami dan buatan untuk menghasilkan benih lele berkualitas...</p>
+                            <div class="article-footer">
+                                <div class="article-author">
+                                    <div class="article-avatar">L</div>
+                                    <span>Lukman</span>
+                                </div>
+                                <a href="detail-artikel.html" class="article-link"
+                                   onclick="localStorage.setItem('selectedArticle', 'Panduan Pemijahan dan Pendederan Ikan Lele')">
+                                    Baca <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button><i class="fas fa-chevron-left"></i></button>
+                    <button class="active">1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-simple">
+        <div class="container">
+            <p>&copy; 2026 BABA FARM. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/pelanggan/common.js"></script>
+    <script src="../js/pelanggan/artikel.js"></script>
+    <script src="../js/image-config.js"></script>
+</body>
+</html>

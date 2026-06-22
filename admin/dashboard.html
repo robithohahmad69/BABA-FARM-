@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Admin BABA FARM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f261c 0%, #1B4332 50%, #0f261c 100%);
+            min-height: 100vh;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+        }
+
+        /* Admin Layout */
+        .admin-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            background: rgba(0, 0, 0, 0.3);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 100;
+        }
+
+        .sidebar-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #52B788;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sidebar-user {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-avatar {
+            width: 45px;
+            height: 45px;
+            background: rgba(82, 183, 136, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #52B788;
+        }
+
+        .user-info h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .user-info p {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .sidebar-menu {
+            padding: 1rem 0;
+        }
+
+        .menu-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .menu-title {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.4);
+            padding: 0 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .menu-item:hover {
+            background: rgba(82, 183, 136, 0.15);
+            color: #52B788;
+        }
+
+        .menu-item.active {
+            background: rgba(82, 183, 136, 0.2);
+            color: #52B788;
+            border-right: 3px solid #52B788;
+        }
+
+        .menu-item i {
+            width: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 260px;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            padding: 1rem 2rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .page-title h1 {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .top-bar-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+        }
+
+        .search-box input {
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            width: 200px;
+        }
+
+        .search-box input:focus {
+            outline: none;
+        }
+
+        .notification-btn {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #e74c3c;
+            color: #fff;
+            font-size: 0.65rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Dashboard Content */
+        .dashboard-content {
+            padding: 2rem;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            padding: 1.5rem;
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .stat-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .stat-icon.blue {
+            background: rgba(52, 152, 219, 0.2);
+            color: #3498db;
+        }
+
+        .stat-icon.green {
+            background: rgba(46, 204, 113, 0.2);
+            color: #2ecc71;
+        }
+
+        .stat-icon.orange {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+        }
+
+        .stat-icon.purple {
+            background: rgba(155, 89, 182, 0.2);
+            color: #9b59b6;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .stat-change {
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .stat-change.up {
+            color: #2ecc71;
+        }
+
+        .stat-change.down {
+            color: #e74c3c;
+        }
+
+        /* Charts Section */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .chart-card {
+            padding: 1.5rem;
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .chart-header h3 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .chart-select {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            padding: 0.4rem 0.8rem;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+
+        .chart-select option {
+            background: #1B4332;
+        }
+
+        /* Simple Chart (CSS-based) */
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            height: 200px;
+            padding-top: 2rem;
+        }
+
+        .bar-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .bar {
+            width: 60%;
+            background: linear-gradient(to top, #52B788, #74c9a0);
+            border-radius: 6px 6px 0 0;
+            position: relative;
+            transition: height 0.5s ease;
+        }
+
+        .bar:hover {
+            background: linear-gradient(to top, #40916c, #52B788);
+        }
+
+        .bar-label {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .bar-value {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Donut Chart */
+        .donut-chart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .donut {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: conic-gradient(
+                #52B788 0deg 144deg,
+                #3498db 144deg 252deg,
+                #ffc107 252deg 324deg,
+                #e74c3c 324deg 360deg
+            );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .donut::after {
+            content: '';
+            width: 100px;
+            height: 100px;
+            background: rgba(27, 67, 50, 0.9);
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .donut-value {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .donut-value .number {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .donut-value .label {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .donut-legend {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+
+        /* Recent Orders */
+        .orders-section {
+            margin-bottom: 2rem;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th {
+            text-align: left;
+            padding: 1rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .data-table td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+        }
+
+        .data-table tr:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.3rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .status-pending { background: rgba(255, 193, 7, 0.2); color: #ffc107; }
+        .status-paid { background: rgba(52, 152, 219, 0.2); color: #3498db; }
+        .status-processing { background: rgba(155, 89, 182, 0.2); color: #9b59b6; }
+        .status-shipped { background: rgba(82, 183, 136, 0.2); color: #52B788; }
+        .status-delivered { background: rgba(46, 204, 113, 0.2); color: #2ecc71; }
+        .status-cancelled { background: rgba(231, 76, 60, 0.2); color: #e74c3c; }
+
+        /* Recent Activity */
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .activity-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .activity-content h5 {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+        }
+
+        .activity-content p {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .activity-time {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-left: auto;
+        }
+
+        /* Mobile Toggle */
+        .mobile-toggle {
+            display: none;
+            font-size: 1.3rem;
+            color: #fff;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .search-box input {
+                width: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-layout">
+         <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="../pelanggan/index.html" class="sidebar-logo">
+                    <i class="fas fa-fish"></i>
+                    BABA FARM
+                </a>
+            </div>
+
+            <div class="sidebar-user">
+                <!-- GAMBAR: User avatar - Admin profile photo -->
+                <div class="user-avatar">A</div>
+                <div class="user-info">
+                    <h4>Admin</h4>
+                    <p>Super Admin</p>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu">
+                <div class="menu-section">
+                    <p class="menu-title">Utama</p>
+                    <a href="dashboard.html" class="menu-item">
+                        <i class="fas fa-th-large"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="artikel.html" class="menu-item active">
+                        <i class="fas fa-newspaper"></i>
+                        <span>Kelola Artikel</span>
+                    </a>
+                    <a href="produk.html" class="menu-item">
+                        <i class="fas fa-box"></i>
+                        <span>Kelola Produk</span>
+                    </a>
+                </div>
+
+                <div class="menu-section">
+                    <p class="menu-title">Transaksi</p>
+                    <a href="transaksi.html" class="menu-item">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Kelola Transaksi</span>
+                    </a>
+                </div>
+
+                <div class="menu-section">
+                    <p class="menu-title">Pengguna</p>
+                    <a href="pengguna.html" class="menu-item">
+                        <i class="fas fa-users"></i>
+                        <span>Kelola Pengguna</span>
+                    </a>
+                </div>
+
+                <div class="menu-section">
+                    <p class="menu-title">Akun</p>
+                    <a href="profile.html" class="menu-item">
+                        <i class="fas fa-user"></i>
+                        <span>Profil Saya</span>
+                    </a>
+                    <a href="settings.html" class="menu-item">
+                        <i class="fas fa-cog"></i>
+                        <span>Pengaturan</span>
+                    </a>
+                    <a href="../pelanggan/index.html" class="menu-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Keluar</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="page-title">
+                    <button class="mobile-toggle" id="mobileToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Dashboard</h1>
+                </div>
+                <div class="top-bar-actions">
+                    <div class="search-box">
+                        <input type="text" placeholder="Cari...">
+                        <i class="fas fa-search" style="color: rgba(255,255,255,0.5);"></i>
+                    </div>
+                    <a href="#" class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">5</span>
+                    </a>
+                    <a href="#" class="notification-btn">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card glass">
+                        <div class="stat-header">
+                            <div class="stat-icon blue">
+                                <i class="fas fa-box"></i>
+                            </div>
+                            <div class="stat-change up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>12%</span>
+                            </div>
+                        </div>
+                        <div class="stat-value">248</div>
+                        <div class="stat-label">Total Produk</div>
+                    </div>
+
+                    <div class="stat-card glass">
+                        <div class="stat-header">
+                            <div class="stat-icon green">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <div class="stat-change up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>23%</span>
+                            </div>
+                        </div>
+                        <div class="stat-value">1,456</div>
+                        <div class="stat-label">Total Transaksi</div>
+                    </div>
+
+                    <div class="stat-card glass">
+                        <div class="stat-header">
+                            <div class="stat-icon orange">
+                                <i class="fas fa-newspaper"></i>
+                            </div>
+                            <div class="stat-change up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>8%</span>
+                            </div>
+                        </div>
+                        <div class="stat-value">86</div>
+                        <div class="stat-label">Total Artikel</div>
+                    </div>
+
+                    <div class="stat-card glass">
+                        <div class="stat-header">
+                            <div class="stat-icon purple">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-change down">
+                                <i class="fas fa-arrow-down"></i>
+                                <span>3%</span>
+                            </div>
+                        </div>
+                        <div class="stat-value">2,847</div>
+                        <div class="stat-label">Total Pengguna</div>
+                    </div>
+                </div>
+
+                <!-- Charts -->
+                <div class="charts-grid">
+                    <!-- Sales Chart -->
+                    <div class="chart-card glass">
+                        <div class="chart-header">
+                            <h3>Statistik Penjualan</h3>
+                            <select class="chart-select">
+                                <option>7 Hari Terakhir</option>
+                                <option>30 Hari Terakhir</option>
+                                <option>Tahun Ini</option>
+                            </select>
+                        </div>
+                        <div class="bar-chart">
+                            <div class="bar-item">
+                                <div class="bar" style="height: 60%;">
+                                    <span class="bar-value">12</span>
+                                </div>
+                                <span class="bar-label">Sen</span>
+                            </div>
+                            <div class="bar-item">
+                                <div class="bar" style="height: 80%;">
+                                    <span class="bar-value">18</span>
+                                </div>
+                                <span class="bar-label">Sel</span>
+                            </div>
+                            <div class="bar-item">
+                                <div class="bar" style="height: 45%;">
+                                    <span class="bar-value">9</span>
+                                </div>
+                                <span class="bar-label">Rab</span>
+                            </div>
+                            <div class="bar-item">
+                                <div class="bar" style="height: 90%;">
+                                    <span class="bar-value">24</span>
+                                </div>
+                                <span class="bar-label">Kam</span>
+                            </div>
+                            <div class="bar-item">
+                                <div class="bar" style="height: 70%;">
+                                    <span class="bar-value">15</span>
+                                </div>
+                                <span class="bar-label">Jum</span>
+                            </div>
+                            <div class="bar-item">
+                                <div class="bar" style="height: 100%;">
+                                    <span class="bar-value">32</span>
+                                </div>
+                                <span class="bar-label">Sab</span>
+                            </div>
+                            <div class="bar-item">
+                                <div class="bar" style="height: 55%;">
+                                    <span class="bar-value">11</span>
+                                </div>
+                                <span class="bar-label">Min</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Status -->
+                    <div class="chart-card glass">
+                        <div class="chart-header">
+                            <h3>Status Pesanan</h3>
+                            <select class="chart-select">
+                                <option>Bulan Ini</option>
+                                <option>Tahun Ini</option>
+                            </select>
+                        </div>
+                        <div class="donut-chart">
+                            <div class="donut">
+                                <div class="donut-value">
+                                    <div class="number">156</div>
+                                    <div class="label">Total Order</div>
+                                </div>
+                            </div>
+                            <div class="donut-legend">
+                                <div class="legend-item">
+                                    <div class="legend-color" style="background: #52B788;"></div>
+                                    <span>Dikirim (40%)</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-color" style="background: #3498db;"></div>
+                                    <span>Diproses (30%)</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-color" style="background: #ffc107;"></div>
+                                    <span>Pending (20%)</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-color" style="background: #e74c3c;"></div>
+                                    <span>Batal (10%)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Orders & Activity -->
+                <div class="charts-grid">
+                    <!-- Recent Orders -->
+                    <div class="glass" style="padding: 1.5rem;">
+                        <div class="chart-header">
+                            <h3>Pesanan Terbaru</h3>
+                            <a href="transaksi.html" style="color: #52B788; text-decoration: none; font-size: 0.85rem;">
+                                Lihat Semua <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Order ID</th>
+                                        <th>Pelanggan</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="color: #52B788; font-weight: 500;">#ORD-2026-008</td>
+                                        <td>Budi Santoso</td>
+                                        <td>Rp 420.000</td>
+                                        <td><span class="status-badge status-shipped">Dikirim</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: #52B788; font-weight: 500;">#ORD-2026-007</td>
+                                        <td>Siti Rahayu</td>
+                                        <td>Rp 185.000</td>
+                                        <td><span class="status-badge status-processing">Diproses</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: #52B788; font-weight: 500;">#ORD-2026-006</td>
+                                        <td>Ahmad Fauzi</td>
+                                        <td>Rp 750.000</td>
+                                        <td><span class="status-badge status-paid">Sudah Dibayar</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: #52B788; font-weight: 500;">#ORD-2026-005</td>
+                                        <td>Dewi Lestari</td>
+                                        <td>Rp 320.000</td>
+                                        <td><span class="status-badge status-pending">Pending</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="glass" style="padding: 1.5rem;">
+                        <div class="chart-header">
+                            <h3>Aktivitas Terbaru</h3>
+                        </div>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <div class="activity-icon" style="background: rgba(46, 204, 113, 0.2); color: #2ecc71;">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h5>Pesanan Baru #ORD-2026-008</h5>
+                                    <p>Budi Santoso membeli 3 produk</p>
+                                </div>
+                                <span class="activity-time">2m</span>
+                            </div>
+
+                            <div class="activity-item">
+                                <div class="activity-icon" style="background: rgba(52, 152, 219, 0.2); color: #3498db;">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h5>Pengguna Baru Terdaftar</h5>
+                                    <p>Rina Wijaya bergabung</p>
+                                </div>
+                                <span class="activity-time">15m</span>
+                            </div>
+
+                            <div class="activity-item">
+                                <div class="activity-icon" style="background: rgba(255, 193, 7, 0.2); color: #ffc107;">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h5>Ulasan Baru</h5>
+                                    <p>Ulasan 5 bintang untuk Benih Lele</p>
+                                </div>
+                                <span class="activity-time">1j</span>
+                            </div>
+
+                            <div class="activity-item">
+                                <div class="activity-icon" style="background: rgba(155, 89, 182, 0.2); color: #9b59b6;">
+                                    <i class="fas fa-newspaper"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h5>Artikel Baru Dipublikasikan</h5>
+                                    <p>Tips Budidaya Lele Musim Hujan</p>
+                                </div>
+                                <span class="activity-time">3j</span>
+                            </div>
+
+                            <div class="activity-item">
+                                <div class="activity-icon" style="background: rgba(231, 76, 60, 0.2); color: #e74c3c;">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h5>Stok Menipis</h5>
+                                    <p>Pakan Pelet 781-2 hampir habis</p>
+                                </div>
+                                <span class="activity-time">5j</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Mobile Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const sidebar = document.getElementById('sidebar');
+
+        mobileToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                if (!sidebar.contains(e.target) && !mobileToggle.contains(e.target)) {
+                    sidebar.classList.remove('active');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran - BABA FARM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1B4332 0%, #2D6A4F 50%, #1B4332 100%);
+            min-height: 100vh;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+        }
+
+        .glass-light {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 5%;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #52B788;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #52B788;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .cart-icon {
+            position: relative;
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #52B788;
+            color: #1B4332;
+            font-size: 0.7rem;
+            font-weight: 600;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 8rem 5% 2rem;
+        }
+
+        .page-header .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Progress Steps */
+        .progress-steps {
+            padding: 0 5%;
+            margin-bottom: 2rem;
+        }
+
+        .progress-steps .container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .progress-steps .container::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.2);
+            z-index: 1;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-circle {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .step.active .step-circle {
+            background: rgba(82, 183, 136, 0.8);
+            border-color: #52B788;
+            color: #1B4332;
+        }
+
+        .step.completed .step-circle {
+            background: #52B788;
+            border-color: #52B788;
+            color: #1B4332;
+        }
+
+        .step-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .step.active .step-label,
+        .step.completed .step-label {
+            color: #52B788;
+        }
+
+        /* Checkout Content */
+        .checkout-content {
+            padding: 0 5% 5rem;
+        }
+
+        .checkout-content .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 2rem;
+        }
+
+        /* Form Section */
+        .form-section {
+            margin-bottom: 2rem;
+        }
+
+        .form-section h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .form-group label.required::after {
+            content: ' *';
+            color: #e74c3c;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 0.8rem 1rem;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #52B788;
+        }
+
+        .form-group select option {
+            background: #1B4332;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .radio-option {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .radio-option input[type="radio"] {
+            display: none;
+        }
+
+        .radio-option label {
+            display: block;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .radio-option input[type="radio"]:checked + label {
+            background: rgba(82, 183, 136, 0.2);
+            border-color: #52B788;
+        }
+
+        .radio-option label i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #52B788;
+        }
+
+        .radio-option label span {
+            display: block;
+            font-size: 0.9rem;
+        }
+
+        /* Order Summary */
+        .order-summary {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .summary-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .order-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .order-item-image {
+            width: 60px;
+            height: 60px;
+            background: rgba(82, 183, 136, 0.15);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #52B788;
+            flex-shrink: 0;
+        }
+
+        .order-item-details {
+            flex: 1;
+        }
+
+        .order-item-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+        }
+
+        .order-item-qty {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .order-item-price {
+            font-weight: 600;
+            color: #52B788;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 1rem 0;
+            font-size: 0.95rem;
+        }
+
+        .summary-row.total {
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 1rem;
+        }
+
+        .summary-row.total .label {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .summary-row.total .value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #52B788;
+        }
+
+        /* Payment Methods */
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .payment-method {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .payment-method:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .payment-method.active {
+            background: rgba(82, 183, 136, 0.2);
+            border-color: #52B788;
+        }
+
+        .payment-method input[type="radio"] {
+            display: none;
+        }
+
+        .payment-method i {
+            font-size: 1.5rem;
+            color: #52B788;
+            width: 30px;
+        }
+
+        .payment-info {
+            flex: 1;
+        }
+
+        .payment-info h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .payment-info p {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Upload Proof */
+        .upload-section {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+        }
+
+        .upload-area {
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .upload-area:hover {
+            border-color: #52B788;
+            background: rgba(82, 183, 136, 0.1);
+        }
+
+        .upload-area i {
+            font-size: 2.5rem;
+            color: #52B788;
+            margin-bottom: 1rem;
+        }
+
+        .upload-area p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0.5rem;
+        }
+
+        .upload-area span {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .upload-area input[type="file"] {
+            display: none;
+        }
+
+        .file-preview {
+            display: none;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(82, 183, 136, 0.15);
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+
+        .file-preview.active {
+            display: flex;
+        }
+
+        .file-preview i {
+            font-size: 2rem;
+            color: #52B788;
+        }
+
+        .file-info h5 {
+            font-size: 0.9rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .file-info span {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .file-remove {
+            background: transparent;
+            border: none;
+            color: #e74c3c;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* Buttons */
+        .btn {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 10px;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: rgba(82, 183, 136, 0.8);
+            color: #1B4332;
+        }
+
+        .btn-primary:hover {
+            background: rgba(82, 183, 136, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(82, 183, 136, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            margin-top: 1rem;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 3rem 5%;
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Toggle */
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .checkout-content .container {
+                grid-template-columns: 1fr;
+            }
+
+            .order-summary {
+                position: static;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: rgba(27, 67, 50, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+                transform: translateY(-150%);
+                transition: transform 0.3s;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .radio-group {
+                flex-direction: column;
+            }
+
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .progress-steps .container {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .progress-steps .container::before {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-fish"></i>
+                BABA FARM
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="katalog.html">Produk</a></li>
+                <li><a href="artikel.html">Artikel</a></li>
+                <li><a href="history.html">Transaksi</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="keranjang.html" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">3</span>
+                </a>
+                <a href="../admin/dashboard.html" style="color: #fff; font-size: 1.2rem;">
+                    <i class="fas fa-user"></i>
+                </a>
+                <div class="mobile-toggle" id="mobileToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Pembayaran</h1>
+            <p>Lengkapi data pengiriman dan pembayaran</p>
+        </div>
+    </section>
+
+    <!-- Progress Steps -->
+    <div class="progress-steps">
+        <div class="container">
+            <div class="step completed">
+                <div class="step-circle"><i class="fas fa-check"></i></div>
+                <span class="step-label">Keranjang</span>
+            </div>
+            <div class="step active">
+                <div class="step-circle">2</div>
+                <span class="step-label">Pembayaran</span>
+            </div>
+            <div class="step">
+                <div class="step-circle">3</div>
+                <span class="step-label">Selesai</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Content -->
+    <main class="checkout-content">
+        <form id="checkoutForm">
+            <div class="container">
+                <!-- Form Section -->
+                <div class="form-sections">
+                    <!-- Data Penerima -->
+                    <div class="form-section glass" style="padding: 1.5rem;">
+                        <h3><i class="fas fa-user"></i> Data Penerima</h3>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="required">Nama Lengkap</label>
+                                <input type="text" name="nama" required placeholder="Masukkan nama lengkap">
+                            </div>
+                            <div class="form-group">
+                                <label class="required">No. WhatsApp</label>
+                                <input type="tel" name="whatsapp" required placeholder="Contoh: 081234567890">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="required">Email</label>
+                            <input type="email" name="email" required placeholder="Contoh: email@gmail.com">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="required">Provinsi</label>
+                                <select name="provinsi" required>
+                                    <option value="">Pilih Provinsi</option>
+                                    <option value="Jawa Tengah">Jawa Tengah</option>
+                                    <option value="Jawa Barat">Jawa Barat</option>
+                                    <option value="Jawa Timur">Jawa Timur</option>
+                                    <option value="DKI Jakarta">DKI Jakarta</option>
+                                    <option value="DI Yogyakarta">DI Yogyakarta</option>
+                                    <option value="Lainnya">Lainnya</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="required">Kota/Kabupaten</label>
+                                <input type="text" name="kota" required placeholder="Masukkan kota/kabupaten">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="required">Alamat Lengkap</label>
+                            <textarea name="alamat" required placeholder="Masukkan alamat lengkap (nama jalan, RT/RW, kelurahan, kecamatan)"></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="required">Kecamatan</label>
+                                <input type="text" name="kecamatan" required placeholder="Masukkan kecamatan">
+                            </div>
+                            <div class="form-group">
+                                <label class="required">Kode Pos</label>
+                                <input type="text" name="kodepos" required placeholder="Masukkan kode pos">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Metode Pengiriman -->
+                    <div class="form-section glass" style="padding: 1.5rem;">
+                        <h3><i class="fas fa-truck"></i> Metode Pengiriman</h3>
+
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" name="pengiriman" id="kurir" value="kurir" checked>
+                                <label for="kurir">
+                                    <i class="fas fa-truck"></i>
+                                    <span>Kurir Reguler</span>
+                                    <span style="font-size: 0.75rem; color: rgba(255,255,255,0.6);">2-3 hari</span>
+                                </label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="pengiriman" id="cargo" value="cargo">
+                                <label for="cargo">
+                                    <i class="fas fa-plane"></i>
+                                    <span>Kargo Udara</span>
+                                    <span style="font-size: 0.75rem; color: rgba(255,255,255,0.6);">1-2 hari</span>
+                                </label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="pengiriman" id="kereta" value="kereta">
+                                <label for="kereta">
+                                    <i class="fas fa-train"></i>
+                                    <span>Kereta API</span>
+                                    <span style="font-size: 0.75rem; color: rgba(255,255,255,0.6);">2-4 hari</span>
+                                </label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="pengiriman" id="ambil" value="ambil">
+                                <label for="ambil">
+                                    <i class="fas fa-store"></i>
+                                    <span>Ambil di Lokasi</span>
+                                    <span style="font-size: 0.75rem; color: rgba(255,255,255,0.6);">Gratis</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Metode Pembayaran -->
+                    <div class="form-section glass" style="padding: 1.5rem;">
+                        <h3><i class="fas fa-credit-card"></i> Metode Pembayaran</h3>
+
+                        <div class="payment-methods">
+                            <label class="payment-method active">
+                                <input type="radio" name="pembayaran" value="transfer" checked>
+                                <i class="fas fa-university"></i>
+                                <div class="payment-info">
+                                    <h4>Transfer Bank</h4>
+                                    <p>BCA, BRI, Mandiri, BNI</p>
+                                </div>
+                            </label>
+
+                            <label class="payment-method">
+                                <input type="radio" name="pembayaran" value="ewallet">
+                                <i class="fas fa-wallet"></i>
+                                <div class="payment-info">
+                                    <h4>E-Wallet</h4>
+                                    <p>GoPay, OVO, Dana, ShopeePay</p>
+                                </div>
+                            </label>
+
+                            <label class="payment-method">
+                                <input type="radio" name="pembayaran" value="qris">
+                                <i class="fas fa-qrcode"></i>
+                                <div class="payment-info">
+                                    <h4>QRIS</h4>
+                                    <p>Scan QR code untuk bayar</p>
+                                </div>
+                            </label>
+
+                            <label class="payment-method">
+                                <input type="radio" name="pembayaran" value="cod">
+                                <i class="fas fa-hand-holding-usd"></i>
+                                <div class="payment-info">
+                                    <h4>Cash on Delivery (COD)</h4>
+                                    <p>Bayar saat barang sampai</p>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- Upload Bukti Transfer -->
+                        <div class="upload-section" id="uploadSection">
+                            <h4 style="margin-bottom: 1rem; font-size: 0.95rem;">Upload Bukti Pembayaran</h4>
+
+                            <div class="upload-area" id="uploadArea">
+                                <input type="file" id="proofFile" accept="image/*">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Klik atau seret file ke sini untuk upload</p>
+                                <span>Format: JPG, PNG, PDF (Maks. 5MB)</span>
+                            </div>
+
+                            <div class="file-preview" id="filePreview">
+                                <i class="fas fa-file-image"></i>
+                                <div class="file-info">
+                                    <h5 id="fileName">bukti_transfer.jpg</h5>
+                                    <span id="fileSize">2.3 MB</span>
+                                </div>
+                                <button type="button" class="file-remove" id="fileRemove">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Catatan -->
+                    <div class="form-section glass" style="padding: 1.5rem;">
+                        <h3><i class="fas fa-sticky-note"></i> Catatan Pesanan</h3>
+                        <div class="form-group">
+                            <textarea name="catatan" placeholder="Tambahkan catatan untuk pesanan Anda (opsional)"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Summary -->
+                <aside class="order-summary glass" style="padding: 1.5rem;">
+                    <h3 class="summary-title">Ringkasan Pesanan</h3>
+
+                    <!-- Order Items -->
+                    <div class="order-item">
+                        <!-- GAMBAR: Order item image - Benih Lele Sangkuriang -->
+                        <div class="order-item-image">
+                            <i class="fas fa-egg"></i>
+                        </div>
+                        <div class="order-item-details">
+                            <div class="order-item-name">Benih Lele Sangkuriang</div>
+                            <div class="order-item-qty">2 x Rp 150.000</div>
+                        </div>
+                        <div class="order-item-price">Rp 300.000</div>
+                    </div>
+
+                    <div class="order-item">
+                        <!-- GAMBAR: Order item image - Pakan Pelet 781-2 -->
+                        <div class="order-item-image">
+                            <i class="fas fa-wheat-awn"></i>
+                        </div>
+                        <div class="order-item-details">
+                            <div class="order-item-name">Pakan Pelet 781-2</div>
+                            <div class="order-item-qty">1 x Rp 85.000</div>
+                        </div>
+                        <div class="order-item-price">Rp 85.000</div>
+                    </div>
+
+                    <div class="order-item">
+                        <!-- GAMBAR: Order item image - Vitamin Ikan Grow -->
+                        <div class="order-item-image">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <div class="order-item-details">
+                            <div class="order-item-name">Vitamin Ikan Grow</div>
+                            <div class="order-item-qty">3 x Rp 45.000</div>
+                        </div>
+                        <div class="order-item-price">Rp 135.000</div>
+                    </div>
+
+                    <!-- Summary -->
+                    <div class="summary-row">
+                        <span class="label">Subtotal</span>
+                        <span class="value">Rp 520.000</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="label">Ongkos Kirim</span>
+                        <span class="value" id="shippingCost">Rp 35.000</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="label">Diskon</span>
+                        <span class="value" style="color: #e74c3c;">- Rp 0</span>
+                    </div>
+
+                    <div class="summary-row total">
+                        <span class="label">Total</span>
+                        <span class="value" id="totalPrice">Rp 555.000</span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-lock"></i> Konfirmasi Pesanan
+                    </button>
+
+                    <a href="keranjang.html" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Kembali ke Keranjang
+                    </a>
+                </aside>
+            </div>
+        </form>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 BABA FARM. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = mobileToggle.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            });
+        });
+
+        // Payment Method Selection
+        document.querySelectorAll('.payment-method').forEach(method => {
+            method.addEventListener('click', function() {
+                document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('active'));
+                this.classList.add('active');
+                this.querySelector('input').checked = true;
+
+                // Show/hide upload section based on payment method
+                const uploadSection = document.getElementById('uploadSection');
+                const paymentValue = this.querySelector('input').value;
+
+                if (paymentValue === 'transfer') {
+                    uploadSection.style.display = 'block';
+                } else {
+                    uploadSection.style.display = 'none';
+                }
+            });
+        });
+
+        // Shipping Cost Update
+        document.querySelectorAll('input[name="pengiriman"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const shippingCost = document.getElementById('shippingCost');
+                const totalPrice = document.getElementById('totalPrice');
+
+                let cost = 35000;
+                if (this.value === 'cargo') cost = 55000;
+                else if (this.value === 'kereta') cost = 25000;
+                else if (this.value === 'ambil') cost = 0;
+
+                shippingCost.textContent = cost === 0 ? 'Gratis' : 'Rp ' + cost.toLocaleString('id-ID');
+
+                const total = 520000 + cost;
+                totalPrice.textContent = 'Rp ' + total.toLocaleString('id-ID');
+            });
+        });
+
+        // File Upload
+        const uploadArea = document.getElementById('uploadArea');
+        const proofFile = document.getElementById('proofFile');
+        const filePreview = document.getElementById('filePreview');
+        const fileName = document.getElementById('fileName');
+        const fileSize = document.getElementById('fileSize');
+        const fileRemove = document.getElementById('fileRemove');
+
+        uploadArea.addEventListener('click', () => proofFile.click());
+
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#52B788';
+            uploadArea.style.background = 'rgba(82, 183, 136, 0.2)';
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+            uploadArea.style.background = 'transparent';
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+            uploadArea.style.background = 'transparent';
+
+            if (e.dataTransfer.files.length) {
+                handleFile(e.dataTransfer.files[0]);
+            }
+        });
+
+        proofFile.addEventListener('change', () => {
+            if (proofFile.files.length) {
+                handleFile(proofFile.files[0]);
+            }
+        });
+
+        function handleFile(file) {
+            if (file.size > 5 * 1024 * 1024) {
+                alert('Ukuran file terlalu besar. Maksimal 5MB.');
+                return;
+            }
+
+            fileName.textContent = file.name;
+            fileSize.textContent = (file.size / 1024 / 1024).toFixed(2) + ' MB';
+            uploadArea.style.display = 'none';
+            filePreview.classList.add('active');
+        }
+
+        fileRemove.addEventListener('click', () => {
+            proofFile.value = '';
+            uploadArea.style.display = 'block';
+            filePreview.classList.remove('active');
+        });
+
+        // Form Submit
+        document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Simulate order processing
+            const btn = this.querySelector('button[type="submit"]');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses Pesanan...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                alert('Pesanan berhasil dibuat! Silakan tunggu konfirmasi dari admin kami.');
+                window.location.href = 'history.html';
+            }, 2000);
+        });
+    </script>
+    <script src="../js/image-config.js"></script>
+</body>
+</html>

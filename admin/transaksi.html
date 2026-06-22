@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelola Transaksi - Admin BABA FARM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f261c 0%, #1B4332 50%, #0f261c 100%);
+            min-height: 100vh;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+        }
+
+        .admin-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 260px;
+            background: rgba(0, 0, 0, 0.3);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 100;
+        }
+
+        .sidebar-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #52B788;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sidebar-user {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-avatar {
+            width: 45px;
+            height: 45px;
+            background: rgba(82, 183, 136, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #52B788;
+        }
+
+        .user-info h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .user-info p {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .sidebar-menu {
+            padding: 1rem 0;
+        }
+
+        .menu-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .menu-title {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.4);
+            padding: 0 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .menu-item:hover {
+            background: rgba(82, 183, 136, 0.15);
+            color: #52B788;
+        }
+
+        .menu-item.active {
+            background: rgba(82, 183, 136, 0.2);
+            color: #52B788;
+            border-right: 3px solid #52B788;
+        }
+
+        .menu-item i {
+            width: 20px;
+            font-size: 0.9rem;
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 260px;
+        }
+
+        .top-bar {
+            padding: 1rem 2rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .page-title h1 {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .top-bar-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+        }
+
+        .search-box input {
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            width: 200px;
+        }
+
+        .search-box input:focus {
+            outline: none;
+        }
+
+        .content {
+            padding: 2rem;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .page-header h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .filter-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .filter-select {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 0.6rem 1rem;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+
+        .filter-select option {
+            background: #1B4332;
+        }
+
+        .date-range {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .date-range input {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 0.6rem 1rem;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+        }
+
+        .table-card {
+            overflow: hidden;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th {
+            text-align: left;
+            padding: 1rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            white-space: nowrap;
+        }
+
+        .data-table td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+        }
+
+        .data-table tr:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .order-id {
+            color: #52B788;
+            font-weight: 600;
+        }
+
+        .customer-info h5 {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+        }
+
+        .customer-info p {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .order-items {
+            max-width: 200px;
+        }
+
+        .order-item {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.2rem;
+        }
+
+        .order-total {
+            font-weight: 600;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.3rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .status-pending { background: rgba(255, 193, 7, 0.2); color: #ffc107; }
+        .status-paid { background: rgba(52, 152, 219, 0.2); color: #3498db; }
+        .status-processing { background: rgba(155, 89, 182, 0.2); color: #9b59b6; }
+        .status-shipped { background: rgba(82, 183, 136, 0.2); color: #52B788; }
+        .status-delivered { background: rgba(46, 204, 113, 0.2); color: #2ecc71; }
+        .status-cancelled { background: rgba(231, 76, 60, 0.2); color: #e74c3c; }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-action {
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .btn-action:hover {
+            background: rgba(82, 183, 136, 0.3);
+            border-color: #52B788;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .pagination-info {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .pagination-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .pagination-btn {
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .pagination-btn:hover {
+            background: rgba(82, 183, 136, 0.3);
+            border-color: #52B788;
+        }
+
+        .pagination-btn.active {
+            background: rgba(82, 183, 136, 0.8);
+            border-color: #52B788;
+            color: #1B4332;
+        }
+
+        /* Detail Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1B4332, #2D6A4F);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 700px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-header h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .modal-close {
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.08);
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background: rgba(231, 76, 60, 0.3);
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .detail-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-section h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #52B788;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+        }
+
+        .detail-label {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .detail-value {
+            font-weight: 500;
+        }
+
+        .order-items-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .order-item-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .item-info {
+            flex: 1;
+        }
+
+        .item-name {
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+        }
+
+        .item-qty {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .item-price {
+            font-weight: 600;
+            color: #52B788;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .status-update {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border-radius: 10px;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: rgba(82, 183, 136, 0.8);
+            color: #1B4332;
+        }
+
+        .btn-primary:hover {
+            background: rgba(82, 183, 136, 1);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.3rem;
+            color: #fff;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        @media (max-width: 1200px) {
+            .stats-cards {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .stats-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .filter-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .date-range {
+                flex-direction: column;
+            }
+
+            .search-box input {
+                width: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="../pelanggan/index.html" class="sidebar-logo">
+                    <i class="fas fa-fish"></i>
+                    BABA FARM
+                </a>
+            </div>
+
+            <div class="sidebar-user">
+                <div class="user-avatar">A</div>
+                <div class="user-info">
+                    <h4>Admin</h4>
+                    <p>Super Admin</p>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu">
+                <div class="menu-section">
+                    <p class="menu-title">Utama</p>
+                    <a href="dashboard.html" class="menu-item">
+                        <i class="fas fa-th-large"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="artikel.html" class="menu-item">
+                        <i class="fas fa-newspaper"></i>
+                        <span>Kelola Artikel</span>
+                    </a>
+                    <a href="produk.html" class="menu-item">
+                        <i class="fas fa-box"></i>
+                        <span>Kelola Produk</span>
+                    </a>
+                </div>
+
+                <div class="menu-section">
+                    <p class="menu-title">Transaksi</p>
+                    <a href="transaksi.html" class="menu-item active">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Kelola Transaksi</span>
+                    </a>
+                </div>
+
+                <div class="menu-section">
+                    <p class="menu-title">Pengguna</p>
+                    <a href="pengguna.html" class="menu-item">
+                        <i class="fas fa-users"></i>
+                        <span>Kelola Pengguna</span>
+                    </a>
+                </div>
+
+                <div class="menu-section">
+                    <p class="menu-title">Akun</p>
+                    <a href="profile.html" class="menu-item">
+                        <i class="fas fa-user"></i>
+                        <span>Profil Saya</span>
+                    </a>
+                    <a href="settings.html" class="menu-item">
+                        <i class="fas fa-cog"></i>
+                        <span>Pengaturan</span>
+                    </a>
+                    <a href="../pelanggan/index.html" class="menu-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Keluar</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="top-bar">
+                <div class="page-title">
+                    <button class="mobile-toggle" id="mobileToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Kelola Transaksi</h1>
+                </div>
+                <div class="top-bar-actions">
+                    <div class="search-box">
+                        <input type="text" placeholder="Cari order ID..." id="searchInput">
+                        <i class="fas fa-search" style="color: rgba(255,255,255,0.5);"></i>
+                    </div>
+                    <a href="#" class="btn-action">
+                        <i class="fas fa-bell"></i>
+                    </a>
+                    <a href="#" class="btn-action">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="content">
+                <!-- Stats Cards -->
+                <div class="stats-cards">
+                    <div class="stat-card glass">
+                        <div class="stat-value" style="color: #ffc107;">12</div>
+                        <div class="stat-label">Pending</div>
+                    </div>
+                    <div class="stat-card glass">
+                        <div class="stat-value" style="color: #3498db;">28</div>
+                        <div class="stat-label">Dibayar</div>
+                    </div>
+                    <div class="stat-card glass">
+                        <div class="stat-value" style="color: #9b59b6;">45</div>
+                        <div class="stat-label">Diproses</div>
+                    </div>
+                    <div class="stat-card glass">
+                        <div class="stat-value" style="color: #52B788;">38</div>
+                        <div class="stat-label">Dikirim</div>
+                    </div>
+                    <div class="stat-card glass">
+                        <div class="stat-value" style="color: #2ecc71;">1.333</div>
+                        <div class="stat-label">Selesai</div>
+                    </div>
+                </div>
+
+                <div class="page-header">
+                    <h2>Daftar Transaksi</h2>
+                    <button class="btn btn-primary" onclick="alert('Export data transaksi...')">
+                        <i class="fas fa-download"></i>
+                        Export Data
+                    </button>
+                </div>
+
+                <div class="filter-bar">
+                    <div class="filter-group">
+                        <select class="filter-select" id="statusFilter">
+                            <option value="all">Semua Status</option>
+                            <option value="pending">Menunggu Pembayaran</option>
+                            <option value="paid">Sudah Dibayar</option>
+                            <option value="processing">Diproses</option>
+                            <option value="shipped">Dikirim</option>
+                            <option value="delivered">Selesai</option>
+                            <option value="cancelled">Dibatalkan</option>
+                        </select>
+                        <div class="date-range">
+                            <input type="date" id="startDate">
+                            <span>s/d</span>
+                            <input type="date" id="endDate">
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <select class="filter-select" id="sortBy">
+                            <option value="newest">Terbaru</option>
+                            <option value="oldest">Terlama</option>
+                            <option value="total-high">Total Tertinggi</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-card glass">
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Pelanggan</th>
+                                    <th>Produk</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th>Tanggal</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="transactionTable">
+                                <tr data-status="shipped">
+                                    <td><span class="order-id">#ORD-2026-008</span></td>
+                                    <td>
+                                        <div class="customer-info">
+                                            <h5>Budi Santoso</h5>
+                                            <p>081234567891</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="order-items">
+                                            <div class="order-item">Benih Lele Sangkuriang x2</div>
+                                            <div class="order-item">Pakan Pelet 781-2 x1</div>
+                                        </div>
+                                    </td>
+                                    <td><span class="order-total">Rp 420.000</span></td>
+                                    <td><span class="status-badge status-shipped">Dikirim</span></td>
+                                    <td>18 Jan 2026</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-action" onclick="viewDetail('#ORD-2026-008')"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-action" onclick="updateStatus(this)"><i class="fas fa-edit"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr data-status="processing">
+                                    <td><span class="order-id">#ORD-2026-007</span></td>
+                                    <td>
+                                        <div class="customer-info">
+                                            <h5>Siti Rahayu</h5>
+                                            <p>081234567892</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="order-items">
+                                            <div class="order-item">Vitamin Ikan Grow x5</div>
+                                        </div>
+                                    </td>
+                                    <td><span class="order-total">Rp 225.000</span></td>
+                                    <td><span class="status-badge status-processing">Diproses</span></td>
+                                    <td>18 Jan 2026</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-action" onclick="viewDetail('#ORD-2026-007')"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-action" onclick="updateStatus(this)"><i class="fas fa-edit"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr data-status="paid">
+                                    <td><span class="order-id">#ORD-2026-006</span></td>
+                                    <td>
+                                        <div class="customer-info">
+                                            <h5>Ahmad Fauzi</h5>
+                                            <p>081234567893</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="order-items">
+                                            <div class="order-item">Benih Lele Phyton x1</div>
+                                            <div class="order-item">Probiotik Bakteri x2</div>
+                                        </div>
+                                    </td>
+                                    <td><span class="order-total">Rp 284.000</span></td>
+                                    <td><span class="status-badge status-paid">Sudah Dibayar</span></td>
+                                    <td>17 Jan 2026</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-action" onclick="viewDetail('#ORD-2026-006')"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-action" onclick="updateStatus(this)"><i class="fas fa-edit"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr data-status="pending">
+                                    <td><span class="order-id">#ORD-2026-005</span></td>
+                                    <td>
+                                        <div class="customer-info">
+                                            <h5>Dewi Lestari</h5>
+                                            <p>081234567894</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="order-items">
+                                            <div class="order-item">Pakan Pelet Grower x3</div>
+                                        </div>
+                                    </td>
+                                    <td><span class="order-total">Rp 225.000</span></td>
+                                    <td><span class="status-badge status-pending">Menunggu Pembayaran</span></td>
+                                    <td>16 Jan 2026</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-action" onclick="viewDetail('#ORD-2026-005')"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-action" onclick="updateStatus(this)"><i class="fas fa-edit"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr data-status="delivered">
+                                    <td><span class="order-id">#ORD-2026-004</span></td>
+                                    <td>
+                                        <div class="customer-info">
+                                            <h5>Eko Prasetyo</h5>
+                                            <p>081234567895</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="order-items">
+                                            <div class="order-item">Benih Lele Sangkuriang x3</div>
+                                            <div class="order-item">Obat Organik Amankan x1</div>
+                                        </div>
+                                    </td>
+                                    <td><span class="order-total">Rp 485.000</span></td>
+                                    <td><span class="status-badge status-delivered">Selesai</span></td>
+                                    <td>15 Jan 2026</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-action" onclick="viewDetail('#ORD-2026-004')"><i class="fas fa-eye"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr data-status="cancelled">
+                                    <td><span class="order-id">#ORD-2026-003</span></td>
+                                    <td>
+                                        <div class="customer-info">
+                                            <h5>Feri Irawan</h5>
+                                            <p>081234567896</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="order-items">
+                                            <div class="order-item">Booster Imun x2</div>
+                                        </div>
+                                    </td>
+                                    <td><span class="order-total">Rp 76.000</span></td>
+                                    <td><span class="status-badge status-cancelled">Dibatalkan</span></td>
+                                    <td>14 Jan 2026</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-action" onclick="viewDetail('#ORD-2026-003')"><i class="fas fa-eye"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="pagination">
+                        <div class="pagination-info">Menampilkan 1-6 dari 1.456 transaksi</div>
+                        <div class="pagination-buttons">
+                            <button class="pagination-btn"><i class="fas fa-chevron-left"></i></button>
+                            <button class="pagination-btn active">1</button>
+                            <button class="pagination-btn">2</button>
+                            <button class="pagination-btn">3</button>
+                            <button class="pagination-btn">...</button>
+                            <button class="pagination-btn">243</button>
+                            <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Detail Modal -->
+    <div class="modal" id="detailModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Detail Transaksi #ORD-2026-008</h3>
+                <button class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="detail-section">
+                    <h4>Informasi Pesanan</h4>
+                    <div class="detail-row">
+                        <span class="detail-label">Status</span>
+                        <span class="detail-value"><span class="status-badge status-shipped">Dikirim</span></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Tanggal Pesanan</span>
+                        <span class="detail-value">18 Januari 2026, 10:30</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Metode Pembayaran</span>
+                        <span class="detail-value">Transfer Bank (BCA)</span>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h4>Informasi Pelanggan</h4>
+                    <div class="detail-row">
+                        <span class="detail-label">Nama</span>
+                        <span class="detail-value">Budi Santoso</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">No. HP</span>
+                        <span class="detail-value">081234567891</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Email</span>
+                        <span class="detail-value">budi.santoso@email.com</span>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h4>Alamat Pengiriman</h4>
+                    <p style="font-size: 0.9rem; color: rgba(255,255,255,0.8);">
+                        Budi Santoso<br>
+                        Jl. Kolam Ikan No. 123, RT 01 RW 02<br>
+                        Desa Sukamaju, Kec. Cibalong<br>
+                        Kab. Garut, Jawa Barat 44175
+                    </p>
+                </div>
+
+                <div class="detail-section">
+                    <h4>Item Pesanan</h4>
+                    <div class="order-items-list">
+                        <div class="order-item-row">
+                            <div class="item-info">
+                                <div class="item-name">Benih Lele Sangkuriang</div>
+                                <div class="item-qty">x 2 (2.000 ekor)</div>
+                            </div>
+                            <div class="item-price">Rp 300.000</div>
+                        </div>
+                        <div class="order-item-row">
+                            <div class="item-info">
+                                <div class="item-name">Pakan Pelet 781-2</div>
+                                <div class="item-qty">x 1 (50kg)</div>
+                            </div>
+                            <div class="item-price">Rp 85.000</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h4>Ringkasan Pembayaran</h4>
+                    <div class="detail-row">
+                        <span class="detail-label">Subtotal</span>
+                        <span class="detail-value">Rp 385.000</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Ongkos Kirim</span>
+                        <span class="detail-value">Rp 35.000</span>
+                    </div>
+                    <div class="detail-row" style="font-weight: 700; font-size: 1.1rem; color: #52B788;">
+                        <span class="detail-label">Total</span>
+                        <span class="detail-value">Rp 420.000</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal()">Tutup</button>
+                <div class="status-update">
+                    <select id="statusSelect" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 0.6rem 1rem; color: #fff; font-size: 0.85rem;">
+                        <option value="pending">Menunggu Pembayaran</option>
+                        <option value="paid">Sudah Dibayar</option>
+                        <option value="processing">Diproses</option>
+                        <option value="shipped" selected>Dikirim</option>
+                        <option value="delivered">Selesai</option>
+                        <option value="cancelled">Dibatalkan</option>
+                    </select>
+                    <button class="btn btn-primary" onclick="saveStatus()">Update Status</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const mobileToggle = document.getElementById('mobileToggle');
+        const sidebar = document.getElementById('sidebar');
+
+        mobileToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+
+        function viewDetail(orderId) {
+            document.getElementById('modalTitle').textContent = `Detail Transaksi ${orderId}`;
+            document.getElementById('detailModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('detailModal').classList.remove('active');
+        }
+
+        function updateStatus(btn) {
+            const row = btn.closest('tr');
+            const orderId = row.querySelector('.order-id').textContent;
+            viewDetail(orderId);
+        }
+
+        function saveStatus() {
+            const newStatus = document.getElementById('statusSelect').value;
+            alert(`Status berhasil diubah ke ${newStatus}`);
+            closeModal();
+        }
+
+        document.getElementById('detailModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        document.getElementById('statusFilter').addEventListener('change', function() {
+            const status = this.value;
+            document.querySelectorAll('#transactionTable tr').forEach(row => {
+                if (status === 'all' || row.dataset.status === status) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            document.querySelectorAll('#transactionTable tr').forEach(row => {
+                const orderId = row.querySelector('.order-id').textContent.toLowerCase();
+                const customer = row.querySelector('.customer-info h5').textContent.toLowerCase();
+                if (orderId.includes(query) || customer.includes(query)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

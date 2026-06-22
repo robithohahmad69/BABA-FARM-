@@ -1,0 +1,20 @@
+# Wireframe files (design only)
+wireframe/
+wireframe.zip
+wireframe-mobile/
+*.zip
+
+# Claude configuration
+.claude/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+.vercel

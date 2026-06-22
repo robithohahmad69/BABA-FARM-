@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History Transaksi - BABA FARM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/pelanggan/common.css">
+    <link rel="stylesheet" href="../css/pelanggan/history.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-fish"></i>
+                BABA FARM
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="katalog.html">Produk</a></li>
+                <li><a href="artikel.html">Artikel</a></li>
+                <li><a href="history.html" class="active">Transaksi</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="keranjang.html" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">3</span>
+                </a>
+                <a href="../admin/dashboard.html" class="btn btn-outline">
+                    <i class="fas fa-user"></i>
+                </a>
+                <div class="mobile-toggle" id="mobileToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>History Transaksi</h1>
+            <p>Riwayat pesanan dan transaksi Anda</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Filter Bar -->
+            <div class="filter-bar">
+                <div class="filter-group">
+                    <select class="filter-select" id="statusFilter">
+                        <option value="all">Semua Status</option>
+                        <option value="pending">Menunggu Pembayaran</option>
+                        <option value="paid">Sudah Dibayar</option>
+                        <option value="processing">Diproses</option>
+                        <option value="shipped">Dikirim</option>
+                        <option value="delivered">Selesai</option>
+                        <option value="cancelled">Dibatalkan</option>
+                    </select>
+                    <select class="filter-select" id="dateFilter">
+                        <option value="all">Semua Tanggal</option>
+                        <option value="today">Hari Ini</option>
+                        <option value="week">7 Hari Terakhir</option>
+                        <option value="month">30 Hari Terakhir</option>
+                        <option value="year">Tahun Ini</option>
+                    </select>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Cari order ID...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+
+            <!-- Transaction Table -->
+            <div class="glass" style="padding: 1.5rem;">
+                <div class="table-container">
+                    <table class="transaction-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Tanggal</th>
+                                <th>Produk</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactionTable">
+                            <tr data-status="delivered">
+                                <td><span class="order-id">#ORD-2026-001</span></td>
+                                <td><span class="order-date">15 Jan 2026</span></td>
+                                <td>
+                                    <div class="order-products">
+                                        <!-- GAMBAR: Order product icon - Benih Lele Sangkuriang -->
+                                        <div class="order-product-item">
+                                            <i class="fas fa-egg"></i>
+                                            <span>Benih Lele Sangkuriang x2</span>
+                                        </div>
+                                        <div class="order-product-item">
+                                            <i class="fas fa-plus"></i>
+                                            <span>1 produk lain</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="order-total">Rp 385.000</span></td>
+                                <td><span class="status-badge status-delivered">Selesai</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon view" onclick="showDetail('#ORD-2026-001')">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon">
+                                            <i class="fas fa-redo"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-status="shipped">
+                                <td><span class="order-id">#ORD-2026-002</span></td>
+                                <td><span class="order-date">18 Jan 2026</span></td>
+                                <td>
+                                    <div class="order-products">
+                                        <!-- GAMBAR: Order product icon - Pakan Pelet 781-2 -->
+                                        <div class="order-product-item">
+                                            <i class="fas fa-wheat-awn"></i>
+                                            <span>Pakan Pelet 781-2 x3</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="order-total">Rp 255.000</span></td>
+                                <td><span class="status-badge status-shipped">Dikirim</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon view" onclick="showDetail('#ORD-2026-002')">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-status="processing">
+                                <td><span class="order-id">#ORD-2026-003</span></td>
+                                <td><span class="order-date">18 Jan 2026</span></td>
+                                <td>
+                                    <div class="order-products">
+                                        <!-- GAMBAR: Order product icon - Vitamin Ikan Grow -->
+                                        <div class="order-product-item">
+                                            <i class="fas fa-flask"></i>
+                                            <span>Vitamin Ikan Grow x5</span>
+                                        </div>
+                                        <!-- GAMBAR: Order product icon - Obat Organik Amankan -->
+                                        <div class="order-product-item">
+                                            <i class="fas fa-prescription-bottle"></i>
+                                            <span>Obat Organik Amankan x2</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="order-total">Rp 291.000</span></td>
+                                <td><span class="status-badge status-processing">Diproses</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon view" onclick="showDetail('#ORD-2026-003')">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-status="paid">
+                                <td><span class="order-id">#ORD-2026-004</span></td>
+                                <td><span class="order-date">17 Jan 2026</span></td>
+                                <td>
+                                    <div class="order-products">
+                                        <!-- GAMBAR: Order product icon - Benih Lele Phyton -->
+                                        <div class="order-product-item">
+                                            <i class="fas fa-egg"></i>
+                                            <span>Benih Lele Phyton x1</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="order-total">Rp 200.000</span></td>
+                                <td><span class="status-badge status-paid">Sudah Dibayar</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon view" onclick="showDetail('#ORD-2026-004')">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-status="pending">
+                                <td><span class="order-id">#ORD-2026-005</span></td>
+                                <td><span class="order-date">16 Jan 2026</span></td>
+                                <td>
+                                    <div class="order-products">
+                                        <!-- GAMBAR: Order product icon - Probiotik Bakteri -->
+                                        <div class="order-product-item">
+                                            <i class="fas fa-bacteria"></i>
+                                            <span>Probiotik Bakteri x3</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="order-total">Rp 126.000</span></td>
+                                <td><span class="status-badge status-pending">Menunggu Pembayaran</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon view" onclick="showDetail('#ORD-2026-005')">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon">
+                                            <i class="fas fa-credit-card"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-status="cancelled">
+                                <td><span class="order-id">#ORD-2026-006</span></td>
+                                <td><span class="order-date">10 Jan 2026</span></td>
+                                <td>
+                                    <div class="order-products">
+                                        <!-- GAMBAR: Order product icon - Pakan Pelet Starter -->
+                                        <div class="order-product-item">
+                                            <i class="fas fa-wheat-awn"></i>
+                                            <span>Pakan Pelet Starter x2</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="order-total">Rp 110.000</span></td>
+                                <td><span class="status-badge status-cancelled">Dibatalkan</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon view" onclick="showDetail('#ORD-2026-006')">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon">
+                                            <i class="fas fa-redo"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button><i class="fas fa-chevron-left"></i></button>
+                    <button class="active">1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Detail Modal -->
+    <div class="modal" id="detailModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Detail Pesanan</h3>
+                <button class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="detail-row">
+                    <span class="detail-label">Status</span>
+                    <span class="detail-value"><span class="status-badge status-delivered">Selesai</span></span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Tanggal Pesanan</span>
+                    <span class="detail-value">15 Januari 2026, 10:30</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Metode Pembayaran</span>
+                    <span class="detail-value">Transfer Bank (BCA)</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Metode Pengiriman</span>
+                    <span class="detail-value">Kurir Reguler (JNE)</span>
+                </div>
+
+                <div class="detail-section">
+                    <h4>Alamat Pengiriman</h4>
+                    <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem;">
+                        Budi Santoso<br>
+                        Jl. Kolam Ikan No. 123, RT 01 RW 02<br>
+                        Desa Sukamaju, Kec. Cibalong<br>
+                        Kab. Garut, Jawa Barat 44175
+                    </p>
+                </div>
+
+                <div class="detail-section">
+                    <h4>Item Pesanan</h4>
+                    <div class="detail-item">
+                        <span>Benih Lele Sangkuriang x2</span>
+                        <span>Rp 300.000</span>
+                    </div>
+                    <div class="detail-item">
+                        <span>Pakan Pelet 781-2 x1</span>
+                        <span>Rp 85.000</span>
+                    </div>
+                    <div class="detail-item detail-total">
+                        <span>Subtotal</span>
+                        <span>Rp 385.000</span>
+                    </div>
+                    <div class="detail-item">
+                        <span>Ongkos Kirim</span>
+                        <span>Rp 35.000</span>
+                    </div>
+                    <div class="detail-item detail-total">
+                        <span>Total</span>
+                        <span>Rp 420.000</span>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h4>Riwayat Status</h4>
+                    <div class="detail-history-item">
+                        <span style="color: #52B788;">•</span> Pesanan selesai - 17 Jan 2026, 14:30
+                    </div>
+                    <div class="detail-history-item">
+                        <span style="color: #52B788;">•</span> Pesanan dikirim - 16 Jan 2026, 09:00
+                    </div>
+                    <div class="detail-history-item">
+                        <span style="color: #52B788;">•</span> Pembayaran dikonfirmasi - 15 Jan 2026, 11:00
+                    </div>
+                    <div class="detail-history-item">
+                        <span style="color: #52B788;">•</span> Pesanan dibuat - 15 Jan 2026, 10:30
+                    </div>
+                </div>
+
+                <button class="btn-invoice">
+                    <i class="fas fa-download"></i> Download Invoice
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-history">
+        <p>&copy; 2026 BABA FARM. All rights reserved.</p>
+    </footer>
+
+    <!-- common.js menangani: mobile menu, scroll navbar, cart -->
+    <script src="../js/pelanggan/common.js"></script>
+
+    <!-- JS khusus halaman history saja -->
+    <script>
+        // Status Filter
+        document.getElementById('statusFilter').addEventListener('change', function () {
+            const status = this.value;
+            document.querySelectorAll('#transactionTable tr').forEach(row => {
+                if (status === 'all' || row.dataset.status === status) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+
+        // Search Order ID
+        document.getElementById('searchInput').addEventListener('input', function () {
+            const query = this.value.toLowerCase();
+            document.querySelectorAll('#transactionTable tr').forEach(row => {
+                const orderId = row.querySelector('.order-id').textContent.toLowerCase();
+                if (orderId.includes(query)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+
+        // Detail Modal
+        function showDetail(orderId) {
+            document.getElementById('modalTitle').textContent = 'Detail Pesanan ' + orderId;
+            document.getElementById('detailModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('detailModal').classList.remove('active');
+        }
+
+        // Tutup modal klik backdrop
+        document.getElementById('detailModal').addEventListener('click', function (e) {
+            if (e.target === this) closeModal();
+        });
+
+        // Tutup modal tombol Escape
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // Pagination (visual)
+        document.querySelectorAll('.pagination button').forEach(btn => {
+            btn.addEventListener('click', function () {
+                if (!this.classList.contains('active') && !this.querySelector('i')) {
+                    document.querySelectorAll('.pagination button').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    window.scrollTo({ top: 400, behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+    <script src="../js/image-config.js"></script>
+</body>
+</html>
