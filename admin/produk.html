@@ -325,6 +325,10 @@
             font-weight: 600;
         }
 
+        .product-badge.sale {
+            background: #e74c3c;
+        }
+
         .product-info {
             padding: 1rem;
         }
@@ -350,6 +354,13 @@
             font-weight: 700;
             color: #52B788;
             margin-bottom: 0.5rem;
+        }
+
+        .product-price .old-price {
+            font-size: 0.75rem;
+            text-decoration: line-through;
+            color: rgba(255, 255, 255, 0.4);
+            margin-left: 0.5rem;
         }
 
         .product-stock {
@@ -426,155 +437,17 @@
             color: #1B4332;
         }
 
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: linear-gradient(135deg, #1B4332, #2D6A4F);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            width: 100%;
-            max-width: 600px;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .modal-header h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-
-        .modal-close {
-            width: 36px;
-            height: 36px;
-            background: rgba(255, 255, 255, 0.08);
-            border: none;
-            border-radius: 8px;
-            color: #fff;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-body {
-            padding: 1.5rem;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.2rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        .form-group label span {
-            color: #e74c3c;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 10px;
-            padding: 0.7rem 1rem;
-            color: #fff;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #52B788;
-        }
-
-        .form-group select option {
-            background: #1B4332;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .upload-area {
-            border: 2px dashed rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            padding: 2rem;
+        /* Empty State */
+        .empty-state {
             text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
+            padding: 4rem 2rem;
+            color: rgba(255, 255, 255, 0.5);
         }
 
-        .upload-area:hover {
-            border-color: #52B788;
-            background: rgba(82, 183, 136, 0.1);
-        }
-
-        .upload-area i {
-            font-size: 2rem;
-            color: #52B788;
-            margin-bottom: 0.5rem;
-        }
-
-        .upload-area p {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .modal-footer {
-            display: flex;
-            justify-content: flex-end;
-            gap: 1rem;
-            padding: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: #fff;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.3);
         }
 
         .mobile-toggle {
@@ -620,10 +493,6 @@
                 grid-template-columns: 1fr;
             }
 
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-
             .search-box input {
                 width: 120px;
             }
@@ -645,7 +514,6 @@
             </div>
 
             <div class="sidebar-user">
-                <!-- GAMBAR: User avatar - Admin profile photo -->
                 <div class="user-avatar">A</div>
                 <div class="user-info">
                     <h4>Admin</h4>
@@ -733,7 +601,7 @@
                 <!-- Page Header -->
                 <div class="page-header">
                     <h2>Daftar Produk</h2>
-                    <button class="btn btn-primary" onclick="openModal()">
+                    <button class="btn btn-primary" onclick="alert('Fitur tambah produk akan diimplementasikan dengan backend')">
                         <i class="fas fa-plus"></i>
                         Tambah Produk
                     </button>
@@ -744,10 +612,10 @@
                     <div class="filter-group">
                         <select class="filter-select" id="categoryFilter">
                             <option value="all">Semua Kategori</option>
-                            <option value="benih">Benih</option>
-                            <option value="pakan">Pakan</option>
-                            <option value="suplemen">Suplemen</option>
-                            <option value="obat">Obat</option>
+                            <option value="Benih">Benih</option>
+                            <option value="Pakan">Pakan</option>
+                            <option value="Suplemen">Suplemen</option>
+                            <option value="Obat">Obat</option>
                         </select>
                         <select class="filter-select" id="stockFilter">
                             <option value="all">Semua Stok</option>
@@ -756,170 +624,10 @@
                             <option value="out">Habis</option>
                         </select>
                     </div>
-                    <div class="filter-group">
-                        <select class="filter-select" id="sortBy">
-                            <option value="name">Nama A-Z</option>
-                            <option value="name-desc">Nama Z-A</option>
-                            <option value="price-low">Harga Terendah</option>
-                            <option value="price-high">Harga Tertinggi</option>
-                        </select>
-                    </div>
                 </div>
 
-                <!-- Products Grid -->
-                <div class="products-grid" id="productsGrid">
-                    <!-- Product 1 -->
-                    <div class="product-card glass" data-category="benih" data-stock="available">
-                        <!-- GAMBAR: Product image - Benih Lele Sangkuriang -->
-                        <div class="product-image">
-                            <i class="fas fa-egg"></i>
-                            <span class="product-badge">Best Seller</span>
-                        </div>
-                        <div class="product-info">
-                            <div class="product-category">Benih</div>
-                            <div class="product-name">Benih Lele Sangkuriang Premium</div>
-                            <div class="product-price">Rp 150.000</div>
-                            <div class="product-stock stock-ok">Stok: 50.000 ekor</div>
-                            <div class="product-actions">
-                                <button class="btn-action" onclick="editProduct(this)"><i class="fas fa-edit"></i></button>
-                                <button class="btn-action" onclick="viewProduct(this)"><i class="fas fa-eye"></i></button>
-                                <button class="btn-action delete" onclick="deleteProduct(this)"><i class="fas fa-trash"></i></button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product 2 -->
-                    <div class="product-card glass" data-category="pakan" data-stock="available">
-                        <!-- GAMBAR: Product image - Pakan Pelet 781-2 -->
-                        <div class="product-image">
-                            <i class="fas fa-wheat-awn"></i>
-                        </div>
-                        <div class="product-info">
-                            <div class="product-category">Pakan</div>
-                            <div class="product-name">Pakan Pelet 781-2 Premium</div>
-                            <div class="product-price">Rp 85.000</div>
-                            <div class="product-stock stock-ok">Stok: 250 karung</div>
-                            <div class="product-actions">
-                                <button class="btn-action" onclick="editProduct(this)"><i class="fas fa-edit"></i></button>
-                                <button class="btn-action" onclick="viewProduct(this)"><i class="fas fa-eye"></i></button>
-                                <button class="btn-action delete" onclick="deleteProduct(this)"><i class="fas fa-trash"></i></button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product 3 -->
-                    <div class="product-card glass" data-category="suplemen" data-stock="available">
-                        <!-- GAMBAR: Product image - Vitamin Ikan Grow -->
-                        <div class="product-image">
-                            <i class="fas fa-flask"></i>
-                        </div>
-                    <div class="product-info">
-                        <div class="product-category">Suplemen</div>
-                        <div class="product-name">Vitamin Ikan Grow Fast</div>
-                            <div class="product-price">Rp 45.000</div>
-                            <div class="product-stock stock-ok">Stok: 180 botol</div>
-                            <div class="product-actions">
-                                <button class="btn-action" onclick="editProduct(this)"><i class="fas fa-edit"></i></button>
-                                <button class="btn-action" onclick="viewProduct(this)"><i class="fas fa-eye"></i></button>
-                                <button class="btn-action delete" onclick="deleteProduct(this)"><i class="fas fa-trash"></i></button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product 4 -->
-                    <div class="product-card glass" data-category="obat" data-stock="low">
-                        <!-- GAMBAR: Product image - Obat Organik Amankan -->
-                        <div class="product-image">
-                            <i class="fas fa-prescription-bottle"></i>
-                        </div>
-                    <div class="product-info">
-                        <div class="product-category">Obat</div>
-                        <div class="product-name">Obat Organik Amankan</div>
-                            <div class="product-price">Rp 35.000</div>
-                            <div class="product-stock stock-low">Stok: 15 botol</div>
-                            <div class="product-actions">
-                                <button class="btn-action" onclick="editProduct(this)"><i class="fas fa-edit"></i></button>
-                                <button class="btn-action" onclick="viewProduct(this)"><i class="fas fa-eye"></i></button>
-                                <button class="btn-action delete" onclick="deleteProduct(this)"><i class="fas fa-trash"></i></button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product 5 -->
-                    <div class="product-card glass" data-category="benih" data-stock="available">
-                        <!-- GAMBAR: Product image - Benih Lele Phyton -->
-                        <div class="product-image">
-                            <i class="fas fa-egg"></i>
-                            <span class="product-badge">Baru</span>
-                        </div>
-                    <div class="product-info">
-                        <div class="product-category">Benih</div>
-                        <div class="product-name">Benih Lele Phyton Super Growth</div>
-                            <div class="product-price">Rp 200.000</div>
-                            <div class="product-stock stock-ok">Stok: 30.000 ekor</div>
-                            <div class="product-actions">
-                                <button class="btn-action" onclick="editProduct(this)"><i class="fas fa-edit"></i></button>
-                                <button class="btn-action" onclick="viewProduct(this)"><i class="fas fa-eye"></i></button>
-                                <button class="btn-action delete" onclick="deleteProduct(this)"><i class="fas fa-trash"></i></button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product 6 -->
-                    <div class="product-card glass" data-category="pakan" data-stock="available">
-                        <!-- GAMBAR: Product image - Pakan Pelet Grower -->
-                        <div class="product-image">
-                            <i class="fas fa-wheat-awn"></i>
-                        </div>
-                        <div class="product-info">
-                            <div class="product-category">Pakan</div>
-                            <div class="product-name">Pakan Pelet Grower</div>
-                            <div class="product-price">Rp 75.000</div>
-                            <div class="product-stock stock-ok">Stok: 150 karung</div>
-                            <div class="product-actions">
-                                <button class="btn-action" onclick="editProduct(this)"><i class="fas fa-edit"></i></button>
-                                <button class="btn-action" onclick="viewProduct(this)"><i class="fas fa-eye"></i></button>
-                                <button class="btn-action delete" onclick="deleteProduct(this)"><i class="fas fa-trash"></i></button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product 7 -->
-                    <div class="product-card glass" data-category="obat" data-stock="available">
-                        <div class="product-image">
-                            <i class="fas fa-bacteria"></i>
-                        </div>
-                        <div class="product-info">
-                            <div class="product-category">Obat</div>
-                            <div class="product-name">Probiotik Bakteri</div>
-                            <div class="product-price">Rp 42.000</div>
-                            <div class="product-stock stock-ok">Stok: 95 botol</div>
-                            <div class="product-actions">
-                                <button class="btn-action" onclick="editProduct(this)"><i class="fas fa-edit"></i></button>
-                                <button class="btn-action" onclick="viewProduct(this)"><i class="fas fa-eye"></i></button>
-                                <button class="btn-action delete" onclick="deleteProduct(this)"><i class="fas fa-trash"></i></button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product 8 -->
-                    <div class="product-card glass" data-category="suplemen" data-stock="out">
-                        <div class="product-image">
-                            <i class="fas fa-shield-virus"></i>
-                        </div>
-                        <div class="product-info">
-                            <div class="product-category">Suplemen</div>
-                            <div class="product-name">Booster Imun</div>
-                            <div class="product-price">Rp 38.000</div>
-                            <div class="product-stock stock-low">Stok: 0 botol</div>
-                            <div class="product-actions">
-                                <button class="btn-action" onclick="editProduct(this)"><i class="fas fa-edit"></i></button>
-                                <button class="btn-action" onclick="viewProduct(this)"><i class="fas fa-eye"></i></button>
-                                <button class="btn-action delete" onclick="deleteProduct(this)"><i class="fas fa-trash"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Products Grid - Diisi dari PRODUK_DATA -->
+                <div class="products-grid" id="productsGrid"></div>
 
                 <!-- Pagination -->
                 <div class="pagination">
@@ -927,148 +635,131 @@
                     <button class="pagination-btn active">1</button>
                     <button class="pagination-btn">2</button>
                     <button class="pagination-btn">3</button>
-                    <button class="pagination-btn">...</button>
-                    <button class="pagination-btn">12</button>
                     <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
         </main>
     </div>
 
-    <!-- Add/Edit Modal -->
-    <div class="modal" id="productModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="modalTitle">Tambah Produk Baru</h3>
-                <button class="modal-close" onclick="closeModal()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="productForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Nama Produk <span>*</span></label>
-                            <input type="text" name="name" placeholder="Nama produk" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Kategori</label>
-                            <select name="category">
-                                <option value="benih">Benih</option>
-                                <option value="pakan">Pakan</option>
-                                <option value="suplemen">Suplemen</option>
-                                <option value="obat">Obat</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Harga (Rp) <span>*</span></label>
-                            <input type="number" name="price" placeholder="0" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Stok</label>
-                            <input type="number" name="stock" placeholder="0">
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Satuan</label>
-                            <select name="unit">
-                                <option value="ekor">Ekor</option>
-                                <option value="karung">Karung</option>
-                                <option value="botol">Botol</option>
-                                <option value="kg">Kilogram</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Status</label>
-                            <select name="status">
-                                <option value="active">Aktif</option>
-                                <option value="inactive">Non-Aktif</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Deskripsi</label>
-                        <textarea name="description" placeholder="Deskripsi produk"></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Gambar Produk</label>
-                        <div class="upload-area">
-                            <input type="file" accept="image/*" style="display: none;">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                            <p>Klik untuk upload gambar</p>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" onclick="closeModal()">Batal</button>
-                <button class="btn btn-primary" onclick="saveProduct()">Simpan</button>
-            </div>
-        </div>
-    </div>
+    <!-- Load produk-data.js untuk PRODUK_DATA -->
+    <script src="../js/produk-data.js"></script>
 
     <script>
-        // Mobile Toggle
-        const mobileToggle = document.getElementById('mobileToggle');
-        const sidebar = document.getElementById('sidebar');
+        // ========================================
+        // ICON BERDASARKAN KATEGORI
+        // ========================================
+        const CATEGORY_ICONS = {
+            'Benih': 'fa-egg',
+            'Pakan': 'fa-wheat-awn',
+            'Suplemen': 'fa-flask',
+            'Obat': 'fa-prescription-bottle'
+        };
 
-        mobileToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('active');
-        });
+        // ========================================
+        // RENDER PRODUK DARI PRODUK_DATA
+        // ========================================
+        function renderProducts() {
+            const container = document.getElementById('productsGrid');
 
-        // Modal Functions
-        function openModal() {
-            document.getElementById('productModal').classList.add('active');
-            document.getElementById('modalTitle').textContent = 'Tambah Produk Baru';
-            document.getElementById('productForm').reset();
+            if (!PRODUK_DATA || Object.keys(PRODUK_DATA).length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state" style="grid-column: 1 / -1;">
+                        <i class="fas fa-box-open"></i>
+                        <h3>Belum ada produk</h3>
+                        <p>Tambahkan produk pertama Anda</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = Object.entries(PRODUK_DATA).map(([key, product]) => {
+                // Tentukan stok class
+                let stockClass = 'stock-ok';
+                let stockLabel = `Stok: ${product.stok}`;
+
+                if (product.stok === 0) {
+                    stockClass = 'stock-low';
+                    stockLabel = 'Stok: Habis';
+                } else if (product.stok < 50) {
+                    stockClass = 'stock-low';
+                    stockLabel = `Stok: ${product.stok} (Menipis)`;
+                }
+
+                // Tentukan badge
+                let badgeHTML = '';
+                if (product.badge) {
+                    const badgeClass = product.badge === 'Diskon' || product.badge === 'Promo' ? 'sale' : '';
+                    badgeHTML = `<span class="product-badge ${badgeClass}">${product.badge}</span>`;
+                }
+
+                // Tentukan icon berdasarkan kategori
+                const iconClass = CATEGORY_ICONS[product.kategori] || 'fa-box';
+
+                // Harga lama
+                let priceHTML = product.harga;
+                if (product.hargaLama) {
+                    priceHTML = `${product.harga} <span class="old-price">${product.hargaLama}</span>`;
+                }
+
+                // Kategori lowercase untuk data attribute
+                const categoryLower = product.kategori.toLowerCase();
+
+                return `
+                    <div class="product-card glass" data-category="${categoryLower}" data-stock="${product.stok > 0 ? (product.stok < 50 ? 'low' : 'available') : 'out'}">
+                        <div class="product-image">
+                            <i class="fas ${iconClass}"></i>
+                            ${badgeHTML}
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">${product.kategori}</div>
+                            <div class="product-name">${product.nama}</div>
+                            <div class="product-price">${priceHTML}</div>
+                            <div class="product-stock ${stockClass}">${stockLabel}</div>
+                            <div class="product-actions">
+                                <button class="btn-action" onclick="editProduct('${key}')" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-action" onclick="viewProduct('${key}')" title="Lihat">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-action delete" onclick="deleteProduct('${key}')" title="Hapus">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
         }
 
-        function closeModal() {
-            document.getElementById('productModal').classList.remove('active');
+        // ========================================
+        // FUNGSI AKSI PRODUK
+        // ========================================
+        function editProduct(key) {
+            const product = PRODUK_DATA[key];
+            alert(`Edit produk: ${product.nama}\n\nFitur ini akan diimplementasikan dengan backend.`);
         }
 
-        function editProduct(btn) {
-            document.getElementById('productModal').classList.add('active');
-            document.getElementById('modalTitle').textContent = 'Edit Produk';
+        function viewProduct(key) {
+            const product = PRODUK_DATA[key];
+            alert(`Detail produk: ${product.nama}\n\nHarga: ${product.harga} ${product.satuan}\nStok: ${product.stok}\nDeskripsi: ${product.deskripsiSingkat}`);
         }
 
-        function viewProduct(btn) {
-            alert('Melihat detail produk...');
-        }
-
-        function deleteProduct(btn) {
-            if (confirm('Apakah Anda yakin ingin menghapus produk ini?')) {
-                const card = btn.closest('.product-card');
-                card.style.opacity = '0';
-                card.style.transform = 'scale(0.9)';
-                setTimeout(() => card.remove(), 300);
+        function deleteProduct(key) {
+            const product = PRODUK_DATA[key];
+            if (confirm(`Apakah Anda yakin ingin menghapus "${product.nama}"?`)) {
+                alert(`Produk "${product.nama}" telah dihapus (simulasi).\n\nFitur ini akan diimplementasikan dengan backend.`);
             }
         }
 
-        function saveProduct() {
-            alert('Produk berhasil disimpan!');
-            closeModal();
-        }
-
-        // Close modal on backdrop click
-        document.getElementById('productModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
-        });
-
-        // Filter Functions
+        // ========================================
+        // FILTER FUNCTIONS
+        // ========================================
         document.getElementById('categoryFilter').addEventListener('change', function() {
             const category = this.value;
             document.querySelectorAll('.product-card').forEach(card => {
-                if (category === 'all' || card.dataset.category === category) {
+                const cardCategory = card.dataset.category;
+                if (category === 'all' || cardCategory === category.toLowerCase()) {
                     card.style.display = '';
                 } else {
                     card.style.display = 'none';
@@ -1079,19 +770,17 @@
         document.getElementById('stockFilter').addEventListener('change', function() {
             const filter = this.value;
             document.querySelectorAll('.product-card').forEach(card => {
+                const stock = card.dataset.stock;
                 if (filter === 'all') {
                     card.style.display = '';
+                } else if (filter === 'available' && (stock === 'available' || stock === 'low')) {
+                    card.style.display = '';
+                } else if (filter === 'low' && stock === 'low') {
+                    card.style.display = '';
+                } else if (filter === 'out' && stock === 'out') {
+                    card.style.display = '';
                 } else {
-                    const stock = card.dataset.stock;
-                    if (filter === 'available' && stock !== 'out') {
-                        card.style.display = '';
-                    } else if (filter === 'low' && stock === 'low') {
-                        card.style.display = '';
-                    } else if (filter === 'out' && stock === 'out') {
-                        card.style.display = '';
-                    } else {
-                        card.style.display = 'none';
-                    }
+                    card.style.display = 'none';
                 }
             });
         });
@@ -1108,7 +797,41 @@
                 }
             });
         });
+
+        // ========================================
+        // MOBILE TOGGLE
+        // ========================================
+        const mobileToggle = document.getElementById('mobileToggle');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+        mobileToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            sidebarOverlay.classList.toggle('active');
+        });
+
+        sidebarOverlay.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            sidebarOverlay.classList.remove('active');
+        });
+
+        // ========================================
+        // INIT
+        // ========================================
+        // Render produk saat halaman dimuat
+        if (typeof PRODUK_DATA !== 'undefined') {
+            renderProducts();
+        } else {
+            console.error('PRODUK_DATA tidak ditemukan. Pastikan produk-data.js sudah dimuat.');
+            document.getElementById('productsGrid').innerHTML = `
+                <div class="empty-state" style="grid-column: 1 / -1;">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Data produk tidak dapat dimuat</h3>
+                    <p>Pastikan file js/produk-data.js sudah ada</p>
+                </div>
+            `;
+        }
     </script>
-<script src="../js/admin/common.js"></script>
+    <script src="../js/admin/common.js"></script>
 </body>
 </html>
