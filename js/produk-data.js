@@ -15,6 +15,7 @@ const PRODUK_DATA = {
         rating: 4.5,
         jumlahUlasan: 45,
         stok: 250,
+        gambar: 'https://www.asiafarming.com/wp-content/uploads/2023/09/Catfish-Farming-in-the-Philippines5.jpg',
         deskripsiSingkat: 'Benih lele sangkuriang ukuran 5-7 cm, sehat dan aktif. Cocok untuk pembesaran.',
         deskripsiLengkap: `Benih Lele Sangkuriang merupakan varietas unggul hasil seleksi Balai Besar Pengembangan Budidaya Air Tawar (BBPBAT) Sukabumi. Dikenal dengan pertumbuhan yang cepat dan tingkat kelangsungan hidup yang tinggi.
 
@@ -43,6 +44,7 @@ Keunggulan Benih Lele Sangkuriang:
         rating: 5,
         jumlahUlasan: 89,
         stok: 150,
+        gambar: 'https://img.mbizmarket.co.id/products/thumbs/800x800/2023/07/24/9778bad2e9fe6910fbc10b323f1de37a.jpg',
         deskripsiSingkat: 'Benih lele phyton super growth. Tumbuh lebih cepat 30% dari varietas lain.',
         deskripsiLengkap: `Benih Lele Phyton adalah varietas premium dengan teknologi seleksi genetik terkini. Mampu tumbuh 30% lebih cepat dibanding varietas konvensional dengan efisiensi pakan yang lebih baik.
 
@@ -71,6 +73,7 @@ Keunggulan Benih Lele Phyton:
         rating: 4.5,
         jumlahUlasan: 38,
         stok: 300,
+        gambar: 'https://down-id.img.susercontent.com/file/id-11134207-7ra0n-mbgivh5xpmlp16',
         deskripsiSingkat: 'Benih lele mesir dengan pertumbuhan stabil dan tahan penyakit.',
         deskripsiLengkap: `Benih Lele Mesir (Clarias gariepinus) adalah varietas yang dikenal dengan ketahanannya terhadap kondisi lingkungan yang kurang ideal. Sangat cocok untuk pembudidaya pemula.
 
@@ -99,6 +102,7 @@ Keunggulan Benih Lele Mesir:
         rating: 5,
         jumlahUlasan: 128,
         stok: 500,
+        gambar: 'https://down-id.img.susercontent.com/file/id-11134207-7r98p-m0cn2k535uks0b',
         deskripsiSingkat: 'Pakan pelet premium dengan protein 32%. Ukuran 3-5 mm, 1 karung 50kg.',
         deskripsiLengkap: `Pakan Pelet 781-2 adalah pakan standar industri yang paling banyak digunakan oleh pembudidaya lele di Indonesia. Formula khusus dengan kandungan protein tinggi untuk pertumbuhan optimal.
 
@@ -129,6 +133,7 @@ Cocok untuk fase pembesaran lele ukuran 10 cm ke atas.`,
         rating: 4,
         jumlahUlasan: 24,
         stok: 200,
+        gambar: 'https://thf.bing.com/th/id/OIP.rrLfhkOSOglmloyAEp88JAHaE8?cb=thfc1falcon2&rs=1&pid=ImgDetMain&o=7&rm=3',
         deskripsiSingkat: 'Pakan pelet untuk fase pembesaran dengan protein 28%. Ukuran 6-8 mm.',
         deskripsiLengkap: `Pakan Pelet Grower dirancang khusus untuk fase pembesaran akhir menuju panen. Ukuran pelet lebih besar sesuai bukaan mulut lele dewasa.
 
@@ -158,6 +163,7 @@ Direkomendasikan untuk lele ukuran 15 cm ke atas atau 2-3 minggu menjelang panen
         rating: 4,
         jumlahUlasan: 19,
         stok: 150,
+        gambar: 'https://down-my.img.susercontent.com/file/800c97115563ba5f4c08b2b06097488b',
         deskripsiSingkat: 'Pakan pelet untuk benih ukuran kecil dengan protein 40%. Ukuran 1-2 mm.',
         deskripsiLengkap: `Pakan Pelet Starter adalah pakan khusus untuk benih lele berukuran kecil (pendederan). Kandungan protein sangat tinggi untuk mendukung pertumbuhan awal yang optimal.
 
@@ -187,6 +193,7 @@ Gunakan untuk benih ukuran 2-5 cm. Berikan 3-4 kali sehari secukupnya.`,
         rating: 4.5,
         jumlahUlasan: 53,
         stok: 80,
+        gambar: 'https://down-id.img.susercontent.com/file/id-11134207-7r98p-lup04vuqiyrubf',
         deskripsiSingkat: 'Pakan alami cincing/kultur cacing sutra untuk pakan alternatif berkualitas.',
         deskripsiLengkap: `Pakan Cincing adalah cacing sutra (Tubifex sp.) yang dikultur secara higienis. Merupakan pakan alami terbaik untuk benih lele fase awal karena sangat disukai dan mudah dicerna.
 
@@ -215,6 +222,7 @@ Keunggulan Pakan Cincing:
         rating: 4,
         jumlahUlasan: 32,
         stok: 100,
+        gambar: 'https://lzd-img-global.slatic.net/g/p/9b6a796cbc45c00084c5baedabcc02e9.jpg_720x720q80.jpg',
         deskripsiSingkat: 'Suplemen vitamin untuk mempercepat pertumbuhan dan meningkatkan daya tahan.',
         deskripsiLengkap: `Vitamin Ikan Grow adalah suplemen cair yang diformulasikan khusus untuk mempercepat pertumbuhan ikan lele. Mengandung kombinasi vitamin, mineral, dan asam amino esensial.
 
@@ -244,6 +252,7 @@ Cara pakai: Campurkan 5ml per kg pakan, aduk rata, berikan setelah pakan sedikit
         rating: 4.5,
         jumlahUlasan: 41,
         stok: 90,
+        gambar: 'https://down-id.img.susercontent.com/file/sg-11134201-822y6-mia461berk041c',
         deskripsiSingkat: 'Suplemen penambah kekebalan tubuh ikan. Meningkatkan ketahanan terhadap penyakit.',
         deskripsiLengkap: `Booster Imun adalah suplemen khusus untuk meningkatkan sistem kekebalan tubuh ikan lele. Sangat direkomendasikan saat pergantian musim atau kondisi cuaca ekstrem.
 
@@ -272,6 +281,7 @@ Manfaat Utama:
         rating: 4.5,
         jumlahUlasan: 67,
         stok: 75,
+        gambar: 'https://thf.bing.com/th/id/OIP.C-wNTv4OJYnwNDlLtz-WmQHaHa?cb=thfc1falcon2&rs=1&pid=ImgDetMain&o=7&rm=3',
         deskripsiSingkat: 'Obat organik untuk mengatasi berbagai penyakit ikan lele. Aman dan tanpa efek samping.',
         deskripsiLengkap: `Obat Organik Amankan adalah solusi pengobatan berbahan dasar herbal alami yang efektif mengatasi berbagai penyakit umum pada ikan lele tanpa meninggalkan residu kimia berbahaya.
 
@@ -301,6 +311,7 @@ Cara pakai: Larutkan 5ml per 100 liter air kolam. Ulangi 3 hari berturut-turut.`
         rating: 5,
         jumlahUlasan: 56,
         stok: 120,
+        gambar: 'https://down-id.img.susercontent.com/file/id-11134207-7r98p-lup04vuqiyrubf',
         deskripsiSingkat: 'Probiotik untuk mengurai limbah dan menjaga kualitas air kolam.',
         deskripsiLengkap: `Probiotik Bakteri mengandung kultur bakteri menguntungkan yang membantu mengurai limbah organik di kolam, menjaga kualitas air tetap optimal, dan mengurangi gas beracun seperti amonia.
 
@@ -331,6 +342,7 @@ Aplikasikan setiap 1-2 minggu sekali untuk hasil optimal.`,
         rating: 4,
         jumlahUlasan: 28,
         stok: 400,
+        gambar: 'https://thf.bing.com/th/id/OIP.BwX9-obGBCAGybBwJqWskQHaHa?cb=thfc1falcon2&rs=1&pid=ImgDetMain&o=7&rm=3',
         deskripsiSingkat: 'Garam krosok untuk pencegahan dan pengobatan penyakit parasit.',
         deskripsiLengkap: `Garam Krosok (garam kasar non-yodium) adalah solusi tradisional yang terbukti efektif untuk pencegahan dan pengobatan penyakit parasit pada ikan lele. Murah, aman, dan mudah diaplikasikan.
 

@@ -692,9 +692,6 @@
                     badgeHTML = `<span class="product-badge ${badgeClass}">${product.badge}</span>`;
                 }
 
-                // Tentukan icon berdasarkan kategori
-                const iconClass = CATEGORY_ICONS[product.kategori] || 'fa-box';
-
                 // Harga lama
                 let priceHTML = product.harga;
                 if (product.hargaLama) {
@@ -704,10 +701,18 @@
                 // Kategori lowercase untuk data attribute
                 const categoryLower = product.kategori.toLowerCase();
 
+                // Tentukan tampilan gambar atau icon fallback
+                let imageHTML;
+                if (product.gambar) {
+                    imageHTML = `<img src="${product.gambar}" alt="${product.nama}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><i class="fas ${CATEGORY_ICONS[product.kategori] || 'fa-box'}" style="display: none;"></i>`;
+                } else {
+                    imageHTML = `<i class="fas ${CATEGORY_ICONS[product.kategori] || 'fa-box'}"></i>`;
+                }
+
                 return `
                     <div class="product-card glass" data-category="${categoryLower}" data-stock="${product.stok > 0 ? (product.stok < 50 ? 'low' : 'available') : 'out'}">
                         <div class="product-image">
-                            <i class="fas ${iconClass}"></i>
+                            ${imageHTML}
                             ${badgeHTML}
                         </div>
                         <div class="product-info">
